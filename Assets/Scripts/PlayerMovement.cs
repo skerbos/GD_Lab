@@ -7,12 +7,16 @@ public class PlayerMovement : MonoBehaviour
 
     public float horizontalSpeed = 10f;
     public float maxSpeed = 20f;
-    public float upSpeed = 10;
-    public float dampFallSpeed = 0.5f;
-    private float currentFallDampSpeed;
+    public float smoothVal = 0.2f;
+    public float gravityScale = 1f;
+    public float fallingGravityScale = 3f;
+    public float jumpSpeed = 10f;
+    public float holdJumpSpeed = 7f;
+    public float jumpButtonTime = 0.3f;
+    public float jumpTime;
     private bool onGroundState = true;
     Vector2 currentVelocity;
-    float smoothVal = 0.5f;
+    
     private Rigidbody2D marioRb;
 
     // Start is called before the first frame update
@@ -33,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.CompareTag("Ground"))
         {
             onGroundState = true;
-            //dampFallSpeed =
+            marioRb.gravityScale = gravityScale;
         }
     }
 
@@ -58,7 +62,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            marioRb.velocity = Vector2.SmoothDamp(marioRb.velocity, Vector2.zero, ref currentVelocity, smoothVal);
+            // Smooth stopping 
+            marioRb.velocity = new Vector2 (Mathf.SmoothDamp(marioRb.velocity.x, Vector2.zero.x, ref currentVelocity.x, smoothVal), marioRb.velocity.y);
         }
     }
 
@@ -66,13 +71,25 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown("space") && onGroundState)
         {
-            marioRb.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
+            marioRb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
             onGroundState = false;
+            jumpTime = 0;
         }
 
-        if (Input.GetKeyDown("space") && !onGroundState)
+        if (!onGroundState && marioRb.velocity.y >= 0)
         {
+            marioRb.gravityScale = gravityScale;
+        }
+        else if (!onGroundState && marioRb.velocity.y < 0)
+        {
+            marioRb.gravityScale = fallingGravityScale;
+        }
 
+        // Extended jump when jump key is held down, slightly higher jump and air time
+        if (Input.GetKey("space") && !onGroundState && jumpTime <= jumpButtonTime)
+        {
+            marioRb.AddForce(Vector2.up * holdJumpSpeed, ForceMode2D.Force);
+            jumpTime += Time.deltaTime;
         }
     }
 }
