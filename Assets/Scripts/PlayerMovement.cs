@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -21,6 +22,13 @@ public class PlayerMovement : MonoBehaviour
     private bool faceRightState = true;
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI gameOverText;
+    public Button restartButton;
+    public Image gameOverScreen;
+    private Vector3 originalScoreTextPos = new Vector3(-780, 480, 0);
+    private Vector3 originalRestartButtonPos = new Vector3(850, 480, 0);
+    private Vector3 gameOverScoreTextPos = new Vector3(0, 0, 0);
+    private Vector3 gameOverRestartButtonPos = new Vector3(0, -135, 0);
     public GameObject enemies;
 
     public JumpOverGoomba jumpOverGoomba;
@@ -31,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
         Application.targetFrameRate = 30;
         marioRb = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
+        gameOverText.enabled = false;
+        gameOverScreen.enabled = false;
     }
 
     // Update is called once per frame
@@ -53,6 +63,10 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Collided with goomba!");
+            gameOverScreen.enabled = true;
+            gameOverText.enabled = true;
+            scoreText.transform.localPosition = gameOverScoreTextPos;
+            restartButton.transform.localPosition = gameOverRestartButtonPos;
             Time.timeScale = 0f;
         }
     }
@@ -140,14 +154,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void resetGame()
     {
+        marioRb.velocity = new Vector3(0, 0, 0);
         marioRb.transform.position = new Vector3(-9.27f, 1.25f, 0f);
         faceRightState = true;
         marioSprite.flipX = false;
+
         scoreText.text = "Score: 0";
+        scoreText.transform.localPosition = originalScoreTextPos;
+        restartButton.transform.localPosition = originalRestartButtonPos;
+        gameOverText.enabled = false;
+        gameOverScreen.enabled = false;
+
         foreach (Transform eachChild in enemies.transform)
         {
             eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
         }
+
         jumpOverGoomba.score = 0;
     }
 }
