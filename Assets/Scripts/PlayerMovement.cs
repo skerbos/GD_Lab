@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        flipSprite();
+        //flipSprite();
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -62,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Collided with goomba!");
             gameOverScreen.enabled = true;
             gameOverText.enabled = true;
             scoreText.transform.localPosition = gameOverScoreTextPos;
@@ -124,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
             jumpTime += Time.deltaTime;
         }
 
+        // Stop extended jump after jump key is lifted
         if (Input.GetKeyUp("space") && !onGroundState)
         {
             jumpTime = jumpButtonTime + 1f;
@@ -147,7 +147,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void RestartButtonCallback(int input)
     {
-        Debug.Log("Restart!");
         resetGame();
         Time.timeScale = 1.0f;
     }

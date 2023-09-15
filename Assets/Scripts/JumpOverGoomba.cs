@@ -40,7 +40,6 @@ public class JumpOverGoomba : MonoBehaviour
         {
             if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
             {
-                Debug.Log("SCORE");
                 countScoreState = false;
                 score++;
                 scoreText.text = "Score: " + score.ToString();
@@ -61,12 +60,10 @@ public class JumpOverGoomba : MonoBehaviour
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, layerMask))
         {
-            Debug.Log("on ground");
             return true;
         }
         else
         {
-            Debug.Log("not on ground");
             return false;
         }
     }
