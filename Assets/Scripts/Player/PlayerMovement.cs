@@ -21,14 +21,19 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
 
+    public Image titleLogo;
+    public Button startButton;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public Button restartButton;
-    public Image gameOverScreen;
+    public Image translucentOverlay;
     private Vector3 originalScoreTextPos = new Vector3(-780, 480, 0);
     private Vector3 originalRestartButtonPos = new Vector3(850, 480, 0);
     private Vector3 gameOverScoreTextPos = new Vector3(0, 0, 0);
     private Vector3 gameOverRestartButtonPos = new Vector3(0, -135, 0);
+    public GameObject pistolSelectUI;
+    public GameObject smgSelectUI;
+
     public GameObject enemies;
 
     public JumpOverGoomba jumpOverGoomba;
@@ -39,14 +44,21 @@ public class PlayerMovement : MonoBehaviour
         Application.targetFrameRate = 30;
         marioRb = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
+
+        Time.timeScale = 0f;
+
+        scoreText.enabled = false;
         gameOverText.enabled = false;
-        gameOverScreen.enabled = false;
+        restartButton.enabled = false;
+
+        pistolSelectUI.SetActive(false);
+        smgSelectUI.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //flipSprite();
+        //FlipSprite();
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -62,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            gameOverScreen.enabled = true;
+            translucentOverlay.enabled = true;
             gameOverText.enabled = true;
             scoreText.transform.localPosition = gameOverScoreTextPos;
             restartButton.transform.localPosition = gameOverRestartButtonPos;
@@ -72,11 +84,11 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        horizontalMovement();
-        verticalMovement();
+        HorizontalMovement();
+        VerticalMovement();
     }
 
-    void horizontalMovement()
+    void HorizontalMovement()
     {
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
 
@@ -96,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void verticalMovement()
+    void VerticalMovement()
     {
         // Initial tap jump
         if (Input.GetKeyDown("space") && onGroundState)
@@ -130,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void flipSprite()
+    void FlipSprite()
     {
         if (Input.GetKeyDown("a") && faceRightState)
         {
@@ -147,11 +159,36 @@ public class PlayerMovement : MonoBehaviour
 
     public void RestartButtonCallback(int input)
     {
-        resetGame();
+        ResetGame();
         Time.timeScale = 1.0f;
     }
 
-    private void resetGame()
+    public void StartButtonCallback(int input)
+    {
+        StartGame();
+        Time.timeScale = 1.0f;
+    }
+
+    private void StartGame()
+    {
+        scoreText.text = "Score: 0";
+        scoreText.transform.localPosition = originalScoreTextPos;
+        restartButton.transform.localPosition = originalRestartButtonPos;
+
+        scoreText.enabled = true;
+        restartButton.enabled = true;
+
+        titleLogo.enabled = false;
+        startButton.enabled = false;
+        startButton.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().enabled = false; // start button text
+        translucentOverlay.enabled = false;
+
+        pistolSelectUI.SetActive(true);
+        smgSelectUI.SetActive(true);
+        
+    }
+
+    private void ResetGame()
     {
         marioRb.velocity = new Vector3(0, 0, 0);
         marioRb.transform.position = new Vector3(-9.27f, 1.25f, 0f);
@@ -162,7 +199,7 @@ public class PlayerMovement : MonoBehaviour
         scoreText.transform.localPosition = originalScoreTextPos;
         restartButton.transform.localPosition = originalRestartButtonPos;
         gameOverText.enabled = false;
-        gameOverScreen.enabled = false;
+        translucentOverlay.enabled = false;
 
         foreach (Transform eachChild in enemies.transform)
         {

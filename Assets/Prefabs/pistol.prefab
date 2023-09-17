@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 8005127795518738660}
   - component: {fileID: 4265461016592444628}
   - component: {fileID: -6152771905006556123}
+  - component: {fileID: -3574493192075998382}
   m_Layer: 0
   m_Name: pistol
   m_TagString: Untagged
@@ -124,9 +125,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7774944079247721666}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15339d68b42a7c14e81918cf4bbe151e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: pistol
+  damage: 10
+  fireRate: 0.5
+  spread: 2
+  bullet: {fileID: 5142106393689424861, guid: 80351d32f77be994fa88e76a7e4c5154, type: 3}
+  barrel: {fileID: 6422547071564164317}
+--- !u!114 &-3574493192075998382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7774944079247721666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d26a68d443f2c4b9e86c8078717207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: pistol

@@ -24,11 +24,11 @@ public class WeaponHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        aimLook();
-        switchWeapons();
+        AimLook();
+        SwitchWeapons();
     }
 
-    void aimLook()
+    void AimLook()
     {
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -49,7 +49,7 @@ public class WeaponHolder : MonoBehaviour
         }
     }
 
-    void switchWeapons()
+    void SwitchWeapons()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && (currentWeapon.name != pistol.GetComponent<WeaponPistol>().name))
         {

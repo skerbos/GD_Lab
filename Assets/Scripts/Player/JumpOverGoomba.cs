@@ -30,7 +30,7 @@ public class JumpOverGoomba : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (onGroundCheck() && Input.GetKeyDown("space"))
+        if (OnGroundCheck() && Input.GetKeyDown("space"))
         {
             onGroundState = false;
             countScoreState = true;
@@ -56,7 +56,7 @@ public class JumpOverGoomba : MonoBehaviour
         }
     }
 
-    private bool onGroundCheck()
+    private bool OnGroundCheck()
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, layerMask))
         {

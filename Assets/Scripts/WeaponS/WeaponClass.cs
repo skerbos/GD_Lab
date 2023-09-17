@@ -16,7 +16,12 @@ public class WeaponClass : MonoBehaviour
 
     private float lastShotTime;
 
-    public void fire()
+    private void Update()
+    {
+        Fire();
+    }
+
+    public void Fire()
     {
         if (Input.GetButton("Fire1") && (Time.time >= (lastShotTime + fireRate)))
         {

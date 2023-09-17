@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class BulletMove : MonoBehaviour
+public class BulletBehavior : MonoBehaviour
 {
     public float bulletSpeed = 10f;
     public float bulletLifeTime = 5f;
-    private GameObject attachedWeapon;
+    public float bulletDamage = 10f;
+    public TextMeshProUGUI damageNumberText;
+    private Vector3 damageNumberTextOffset;
 
     private Rigidbody2D bulletRb;
 
@@ -14,7 +17,7 @@ public class BulletMove : MonoBehaviour
     void Start()
     {
         bulletRb = GetComponent<Rigidbody2D>();
-        attachedWeapon = GameObject.Find("pistol");
+        damageNumberTextOffset = new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), 0);
     }
 
     // Update is called once per frame
@@ -25,11 +28,11 @@ public class BulletMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        move();
-        destroyAfterSeconds();
+        Move();
+        Destroy(gameObject, bulletLifeTime);
     }
 
-    void move()
+    void Move()
     {
         bulletRb.velocity = transform.right * bulletSpeed;
     }
@@ -48,12 +51,10 @@ public class BulletMove : MonoBehaviour
         if (col.transform.CompareTag("Enemy") || col.transform.CompareTag("Ground"))
         {
             Debug.Log("HIT " + col.transform.name);
+            TextMeshProUGUI damageNumberClone = Instantiate(damageNumberText, Camera.main.WorldToScreenPoint(col.transform.position) + damageNumberTextOffset, col.transform.rotation);
+            damageNumberClone.GetComponent<DamageNumberBehavior>().damageValue = bulletDamage;
+
             Destroy(gameObject);
         }
-    }
-
-    private void destroyAfterSeconds()
-    {
-        Destroy(gameObject, bulletLifeTime);
     }
 }

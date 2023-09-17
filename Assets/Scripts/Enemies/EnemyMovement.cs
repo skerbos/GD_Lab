@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
         enemyRb = GetComponent<Rigidbody2D>();
 
         originalX = transform.position.x;
-        computeVelocity();
+        ComputeVelocity();
     }
 
     // Update is called once per frame
@@ -28,14 +28,14 @@ public class EnemyMovement : MonoBehaviour
     {
         if (Mathf.Abs(enemyRb.position.x - originalX) < maxOffset)
         {
-            moveGoomba();
+            MoveGoomba();
         }
         else
         {
             // change direction
             moveRight *= -1;
-            computeVelocity();
-            moveGoomba();
+            ComputeVelocity();
+            MoveGoomba();
         }
     }
 
@@ -44,12 +44,12 @@ public class EnemyMovement : MonoBehaviour
         Debug.Log(other.gameObject.name);
     }
 
-    void computeVelocity()
+    void ComputeVelocity()
     {
         velocity = new Vector2((moveRight) * maxOffset / enemyPatrolTime, 0);
     }
 
-    void moveGoomba()
+    void MoveGoomba()
     {
         enemyRb.MovePosition(enemyRb.position + velocity * enemyPatrolTime * Time.fixedDeltaTime);
     }

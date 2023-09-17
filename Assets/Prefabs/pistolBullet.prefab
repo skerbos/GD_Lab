@@ -136,6 +136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 30
   bulletLifeTime: 0.5
+  bulletDamage: 10
+  damageNumberText: {fileID: 3206922063618342582, guid: 5f935bb17066cb04589d6617609d13e4, type: 3}
 --- !u!50 &5863187778382634092
 Rigidbody2D:
   serializedVersion: 4
