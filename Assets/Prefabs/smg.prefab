@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7097679233891722976}
   - component: {fileID: 5636868280383492933}
-  - component: {fileID: 83187185195804171}
   - component: {fileID: -7520718135110457759}
   m_Layer: 0
   m_Name: smg
@@ -87,24 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &83187185195804171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4570125440060386574}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21bebe1717e46284c847a122f43fc83f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponName: smg
-  damage: 2
-  fireRate: 0.05
-  spread: 7
-  bullet: {fileID: 5142106393689424861, guid: 364362ffd46c8fd42b657dbcc7cbcb2e, type: 3}
-  barrel: {fileID: 8888729833624910586}
 --- !u!114 &-7520718135110457759
 MonoBehaviour:
   m_ObjectHideFlags: 0

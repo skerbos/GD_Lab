@@ -51,13 +51,13 @@ public class WeaponHolder : MonoBehaviour
 
     void SwitchWeapons()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && (currentWeapon.name != pistol.GetComponent<WeaponPistol>().name))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && (currentWeapon.name != pistol.GetComponent<WeaponClass>().name))
         {
             Destroy(currentWeapon);
             currentWeapon = Instantiate(pistol, transform);
             currentWeapon.transform.localPosition += new Vector3(weaponOffset, 0, 0);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && (currentWeapon.name != smg.GetComponent<WeaponSMG>().name))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && (currentWeapon.name != smg.GetComponent<WeaponClass>().name))
         {
             Destroy(currentWeapon);
             currentWeapon = Instantiate(smg, transform);
