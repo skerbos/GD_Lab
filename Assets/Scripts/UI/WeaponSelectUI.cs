@@ -30,8 +30,6 @@ public class WeaponSelectUI : MonoBehaviour
     {
         currentWeapon = transform.GetChild(0).gameObject;
 
-        Debug.Log(currentWeapon.GetComponent<WeaponClass>().weaponName);
-
         switch (currentWeapon.GetComponent<WeaponClass>().weaponName)
         {
             case "pistol":

@@ -41,7 +41,6 @@ public class BulletBehavior : MonoBehaviour
     {
         if (col.transform.CompareTag("Enemy") || col.transform.CompareTag("Ground"))
         {
-            Debug.Log("HIT " + col.transform.name);
             Destroy(gameObject);
         }
     }
@@ -50,7 +49,6 @@ public class BulletBehavior : MonoBehaviour
     {
         if (col.transform.CompareTag("Enemy") || col.transform.CompareTag("Ground"))
         {
-            Debug.Log("HIT " + col.transform.name);
             TextMeshProUGUI damageNumberClone = Instantiate(damageNumberText, Camera.main.WorldToScreenPoint(col.transform.position) + damageNumberTextOffset, col.transform.rotation);
             damageNumberClone.GetComponent<DamageNumberBehavior>().damageValue = bulletDamage;
 

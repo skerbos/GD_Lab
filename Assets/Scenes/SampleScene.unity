@@ -4062,7 +4062,7 @@ GameObject:
   - component: {fileID: 1624084124}
   - component: {fileID: 1624084123}
   - component: {fileID: 1624084122}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}

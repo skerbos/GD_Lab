@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class CrosshairControl : MonoBehaviour
@@ -7,7 +8,7 @@ public class CrosshairControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -18,7 +19,7 @@ public class CrosshairControl : MonoBehaviour
 
     void FollowMouse()
     {
-        transform.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = Input.mousePosition;
         Cursor.visible = false;
     }
 }

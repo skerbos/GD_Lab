@@ -43,7 +43,6 @@ public class JumpOverGoomba : MonoBehaviour
                 countScoreState = false;
                 score++;
                 scoreText.text = "Score: " + score.ToString();
-                Debug.Log(score);
             }
         }
     }
