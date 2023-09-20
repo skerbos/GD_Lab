@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     public float holdJumpSpeed = 7f;
     public float jumpButtonTime = 0.3f;
     public float jumpTime;
+
+    public Animator marioAnimator;
+
     private bool onGroundState = true;
     private Vector2 currentVelocity;
     private Rigidbody2D marioRb;
@@ -45,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
         marioRb = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
 
+        marioAnimator.SetBool("onGround", onGroundState);
+
         Time.timeScale = 0f;
 
         scoreText.enabled = false;
@@ -59,14 +64,19 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //FlipSprite();
+        skidAnimTrigger();
+        setAnimSpeed();
+
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground"))
+        if (col.gameObject.CompareTag("Ground") && !onGroundState)
         {
             onGroundState = true;
             marioRb.gravityScale = gravityScale;
+
+            marioAnimator.SetBool("onGround", onGroundState);
         }
     }
 
@@ -86,6 +96,8 @@ public class PlayerMovement : MonoBehaviour
     {
         HorizontalMovement();
         VerticalMovement();
+
+        setAnimGroundBool();
     }
 
     void HorizontalMovement()
@@ -148,13 +160,38 @@ public class PlayerMovement : MonoBehaviour
         {
             faceRightState = false;
             marioSprite.flipX = true;
+
+            if (marioRb.velocity.x > 0.1f)
+                marioAnimator.SetTrigger("onSkid");
         }
 
         if (Input.GetKeyDown("d") && !faceRightState)
         {
             faceRightState = true;
             marioSprite.flipX = false;
+
+            if (marioRb.velocity.x < -0.1f)
+                marioAnimator.SetTrigger("onSkid");
         }
+    }
+
+    void skidAnimTrigger()
+    {
+        if (marioRb.velocity.x > 0.1f)
+            marioAnimator.SetTrigger("onSkid");
+
+        if (marioRb.velocity.x < -0.1f)
+            marioAnimator.SetTrigger("onSkid");
+    }
+
+    void setAnimSpeed()
+    {
+        marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioRb.velocity.x));
+    }
+
+    void setAnimGroundBool()
+    {
+        marioAnimator.SetBool("onGround", onGroundState);
     }
 
     public void RestartButtonCallback(int input)
