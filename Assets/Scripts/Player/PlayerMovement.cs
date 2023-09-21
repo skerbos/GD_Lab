@@ -16,7 +16,14 @@ public class PlayerMovement : MonoBehaviour
     public float jumpButtonTime = 0.3f;
     public float jumpTime;
 
+    [System.NonSerialized]
+    public bool alive = true;
+    public float deathImpulse = 5f;
+
     public Animator marioAnimator;
+
+    public AudioSource marioAudio;
+    public AudioClip marioDeath;
 
     private bool onGroundState = true;
     private Vector2 currentVelocity;
@@ -84,16 +91,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            translucentOverlay.enabled = true;
-            gameOverText.enabled = true;
-            scoreText.transform.localPosition = gameOverScoreTextPos;
-            restartButton.transform.localPosition = gameOverRestartButtonPos;
-            Time.timeScale = 0f;
+
+            //Death Animation
+            marioAnimator.Play("mario-die");
+            marioAudio.PlayOneShot(marioDeath);
+            alive = false;
         }
     }
 
     void FixedUpdate()
     {
+        if (!alive) return;
         HorizontalMovement();
         VerticalMovement();
 
@@ -154,6 +162,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void PlayDeathImpluse()
+    {
+        marioRb.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
+    }
+
+    void GameOverScene()
+    {
+        Time.timeScale = 0.0f;
+
+        GameOver();
+
+    }
+
     void FlipSprite()
     {
         if (Input.GetKeyDown("a") && faceRightState)
@@ -177,10 +198,10 @@ public class PlayerMovement : MonoBehaviour
 
     void skidAnimTrigger()
     {
-        if (marioRb.velocity.x > 0.1f)
+        if (marioRb.velocity.x > 1f && Input.GetKeyDown("a"))
             marioAnimator.SetTrigger("onSkid");
 
-        if (marioRb.velocity.x < -0.1f)
+        if (marioRb.velocity.x < 1f && Input.GetKeyDown("d"))
             marioAnimator.SetTrigger("onSkid");
     }
 
@@ -192,6 +213,11 @@ public class PlayerMovement : MonoBehaviour
     void setAnimGroundBool()
     {
         marioAnimator.SetBool("onGround", onGroundState);
+    }
+
+    void PlayJumpSound()
+    {
+        marioAudio.PlayOneShot(marioAudio.clip);
     }
 
     public void RestartButtonCallback(int input)
@@ -244,5 +270,19 @@ public class PlayerMovement : MonoBehaviour
         }
 
         jumpOverGoomba.score = 0;
+
+        // Reset Animation
+        marioAnimator.SetTrigger("gameRestart");
+        alive = true;
+    }
+
+    private void GameOver()
+    {
+        translucentOverlay.enabled = true;
+        gameOverText.enabled = true;
+        scoreText.transform.localPosition = gameOverScoreTextPos;
+        restartButton.transform.localPosition = gameOverRestartButtonPos;
+
+        Time.timeScale = 0f;
     }
 }
