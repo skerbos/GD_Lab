@@ -24,14 +24,13 @@ public class WeaponHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AimLook();
-        SwitchWeapons();
+        //AimLook();
+        //SwitchWeapons();
     }
 
-    void AimLook()
+    public void AimLook(Vector2 value)
     {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(value);
         Vector2 direction = new Vector2((mousePos.x - transform.position.x), (mousePos.y - transform.position.y));
         transform.right = direction;
 
@@ -48,6 +47,28 @@ public class WeaponHolder : MonoBehaviour
             player.transform.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
+
+    /*
+    void AimLook()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector2 direction = new Vector2((mousePos.x - transform.position.x), (mousePos.y - transform.position.y));
+        transform.right = direction;
+
+
+        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if (rotZ < 89 && rotZ > -89)
+        {
+            currentWeapon.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            player.transform.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            currentWeapon.transform.localRotation = Quaternion.Euler(180, 0, 0);
+            player.transform.GetComponent<SpriteRenderer>().flipX = true;
+        }
+    }*/
 
     void SwitchWeapons()
     {

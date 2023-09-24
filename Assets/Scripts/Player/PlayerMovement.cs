@@ -16,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
     public float jumpButtonTime = 0.3f;
     public float jumpTime;
 
+    private bool moving = false;
+    private int moveDir;
+    private bool jumpedState = false;
+
     [System.NonSerialized]
     public bool alive = true;
     public float deathImpulse = 5f;
@@ -106,10 +110,64 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (!alive) return;
-        HorizontalMovement();
-        VerticalMovement();
+
+        Move(moveDir);
+        //HorizontalMovement();
+        //VerticalMovement();
 
         setAnimGroundBool();
+    }
+
+    void Move(int value)
+    {
+        Vector2 movement = new Vector2(value, 0);
+        if (Mathf.Abs(value) > 0)
+        {
+            if (marioRb.velocity.magnitude < maxSpeed)
+                marioRb.AddForce(movement * horizontalSpeed);
+        }
+        else
+        {
+            marioRb.velocity = new Vector2(Mathf.SmoothDamp(marioRb.velocity.x, Vector2.zero.x, ref currentVelocity.x, smoothVal), marioRb.velocity.y);
+        }
+    }
+
+    public void MoveCheck(int value)
+    {
+        if (value == 0)
+        {
+            moving = false;
+        }
+        else
+        {
+            FlipSprite(value);
+            moving = true;
+            Move(value);
+        }
+    }
+
+    public void AltMoveCheck(int value)
+    {
+        moveDir = value;
+    }
+
+    public void Jump()
+    {
+        if (!alive && !onGroundState) return;
+
+        marioRb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+        onGroundState = false;
+        jumpedState = true;
+
+        marioAnimator.SetBool("onGround", onGroundState);
+    }
+
+    public void JumpHold()
+    {
+        if (!alive && !jumpedState) return;
+
+        marioRb.AddForce(Vector2.up * jumpSpeed * holdJumpSpeed, ForceMode2D.Force);
+        jumpedState = false;
     }
 
     void HorizontalMovement()
@@ -179,9 +237,9 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void FlipSprite()
+    void FlipSprite(int value)
     {
-        if (Input.GetKeyDown("a") && faceRightState)
+        if (value == -1 && faceRightState)
         {
             faceRightState = false;
             marioSprite.flipX = true;
@@ -190,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
                 marioAnimator.SetTrigger("onSkid");
         }
 
-        if (Input.GetKeyDown("d") && !faceRightState)
+        if (value == 1 && !faceRightState)
         {
             faceRightState = true;
             marioSprite.flipX = false;
