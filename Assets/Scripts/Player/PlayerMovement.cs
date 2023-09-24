@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     public bool alive = true;
     public float deathImpulse = 5f;
 
+    public Transform gameCamera;
+
     public Animator marioAnimator;
 
     public AudioSource marioAudio;
@@ -45,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject smgSelectUI;
 
     public GameObject enemies;
+
+    int collisionLayerMask = (1 << 6) | (1 << 7) | (1 << 8);
 
     public JumpOverGoomba jumpOverGoomba;
 
@@ -78,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground") && !onGroundState)
+        if ((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0 & !onGroundState)
         {
             onGroundState = true;
             marioRb.gravityScale = gravityScale;
@@ -257,6 +261,8 @@ public class PlayerMovement : MonoBehaviour
         marioRb.transform.position = new Vector3(-9.27f, 1.25f, 0f);
         faceRightState = true;
         marioSprite.flipX = false;
+
+        gameCamera.position = new Vector3(0, 4, -10);
 
         scoreText.text = "Score: 0";
         scoreText.transform.localPosition = originalScoreTextPos;
