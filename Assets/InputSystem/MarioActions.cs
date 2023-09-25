@@ -62,6 +62,24 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""7067d32c-dec2-4c9b-bc14-074bab30b896"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""firepoint"",
+                    ""type"": ""Value"",
+                    ""id"": ""4346d1e2-2b60-44e2-822f-5cbbe9d001bb"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -130,6 +148,50 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""action"": ""aimlook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a6c0037-90a2-4e88-9baf-c912f1c41efa"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB&M"",
+                    ""action"": ""fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""68520c56-0776-4831-898a-4c9219ba66ee"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""firepoint"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""58ed0497-6c5c-4b2b-9a68-d8bb0b0bd466"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""firepoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""d2e6c235-dbaa-46d0-a5c7-c40f0e340fd0"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""firepoint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -159,6 +221,8 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         m_gamplay_aimlook = m_gamplay.FindAction("aimlook", throwIfNotFound: true);
         m_gamplay_jump = m_gamplay.FindAction("jump", throwIfNotFound: true);
         m_gamplay_jumphold = m_gamplay.FindAction("jumphold", throwIfNotFound: true);
+        m_gamplay_fire = m_gamplay.FindAction("fire", throwIfNotFound: true);
+        m_gamplay_firepoint = m_gamplay.FindAction("firepoint", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -224,6 +288,8 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_gamplay_aimlook;
     private readonly InputAction m_gamplay_jump;
     private readonly InputAction m_gamplay_jumphold;
+    private readonly InputAction m_gamplay_fire;
+    private readonly InputAction m_gamplay_firepoint;
     public struct GamplayActions
     {
         private @MarioActions m_Wrapper;
@@ -232,6 +298,8 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         public InputAction @aimlook => m_Wrapper.m_gamplay_aimlook;
         public InputAction @jump => m_Wrapper.m_gamplay_jump;
         public InputAction @jumphold => m_Wrapper.m_gamplay_jumphold;
+        public InputAction @fire => m_Wrapper.m_gamplay_fire;
+        public InputAction @firepoint => m_Wrapper.m_gamplay_firepoint;
         public InputActionMap Get() { return m_Wrapper.m_gamplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -253,6 +321,12 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
             @jumphold.started += instance.OnJumphold;
             @jumphold.performed += instance.OnJumphold;
             @jumphold.canceled += instance.OnJumphold;
+            @fire.started += instance.OnFire;
+            @fire.performed += instance.OnFire;
+            @fire.canceled += instance.OnFire;
+            @firepoint.started += instance.OnFirepoint;
+            @firepoint.performed += instance.OnFirepoint;
+            @firepoint.canceled += instance.OnFirepoint;
         }
 
         private void UnregisterCallbacks(IGamplayActions instance)
@@ -269,6 +343,12 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
             @jumphold.started -= instance.OnJumphold;
             @jumphold.performed -= instance.OnJumphold;
             @jumphold.canceled -= instance.OnJumphold;
+            @fire.started -= instance.OnFire;
+            @fire.performed -= instance.OnFire;
+            @fire.canceled -= instance.OnFire;
+            @firepoint.started -= instance.OnFirepoint;
+            @firepoint.performed -= instance.OnFirepoint;
+            @firepoint.canceled -= instance.OnFirepoint;
         }
 
         public void RemoveCallbacks(IGamplayActions instance)
@@ -301,5 +381,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         void OnAimlook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnJumphold(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
+        void OnFirepoint(InputAction.CallbackContext context);
     }
 }
