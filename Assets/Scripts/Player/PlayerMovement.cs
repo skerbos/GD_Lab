@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!alive) return;
 
-        Move(moveDir);
+        AltMove(moveDir);
         //HorizontalMovement();
         //VerticalMovement();
 
@@ -125,6 +125,18 @@ public class PlayerMovement : MonoBehaviour
         {
             if (marioRb.velocity.magnitude < maxSpeed)
                 marioRb.AddForce(movement * horizontalSpeed);
+        }
+        else
+        {
+            marioRb.velocity = new Vector2(Mathf.SmoothDamp(marioRb.velocity.x, Vector2.zero.x, ref currentVelocity.x, smoothVal), marioRb.velocity.y);
+        }
+    }
+
+    void AltMove(int value)
+    {
+        if (Mathf.Abs(value) > 0)
+        {
+            marioRb.velocity = new Vector2(Mathf.Lerp(value * horizontalSpeed, marioRb.velocity.x,  smoothVal), marioRb.velocity.y);
         }
         else
         {
@@ -348,5 +360,23 @@ public class PlayerMovement : MonoBehaviour
         restartButton.transform.localPosition = gameOverRestartButtonPos;
 
         Time.timeScale = 0f;
+    }
+
+    public void GameRestart()
+    {
+        // reset position
+        marioRb.transform.position = new Vector3(-9.27f, 1.25f, 0f);
+
+        // reset sprite direction
+        faceRightState = true;
+        marioSprite.flipX = false;
+
+        //  reset animation
+        marioAnimator.SetTrigger("gameRestart");
+        alive = true;
+
+        // reset camera position
+        gameCamera.position = new Vector3(0, 4, -10);
+
     }
 }

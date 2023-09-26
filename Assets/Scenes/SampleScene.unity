@@ -1999,7 +1999,7 @@ MonoBehaviour:
   smoothVal: 0.01
   gravityScale: 2
   fallingGravityScale: 3
-  jumpSpeed: 7
+  jumpSpeed: 10
   holdJumpSpeed: 25
   jumpButtonTime: 0.3
   jumpTime: 0
@@ -2458,6 +2458,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6a578387-6068-4ef2-8627-c0e554578245
     m_ActionName: gamplay/jumphold[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7067d32c-dec2-4c9b-bc14-074bab30b896
+    m_ActionName: gamplay/fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4346d1e2-2b60-44e2-822f-5cbbe9d001bb
+    m_ActionName: gamplay/firepoint[/Mouse/leftButton,/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: KB&M
   m_DefaultActionMap: gamplay
