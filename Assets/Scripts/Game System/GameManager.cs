@@ -16,8 +16,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameStart.Invoke();
-        Time.timeScale = 1.0f;
+        Time.timeScale = 0.0f;
     }
 
     // Update is called once per frame
@@ -26,10 +25,20 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void GameStart()
+    {
+        gameStart.Invoke();
+        Time.timeScale = 1.0f;
+    }
+
     public void GameRestart()
     {
         score = 0;
         SetScore(score);
+
+        gameRestart.Invoke();
+
+        Time.timeScale = 1.0f;
     }
 
     public void IncreaseScore(int increment)

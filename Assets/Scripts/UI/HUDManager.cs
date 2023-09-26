@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class HUDManager : MonoBehaviour
@@ -16,8 +17,21 @@ public class HUDManager : MonoBehaviour
         new Vector3(0,-150,0)
     };
 
+    private Vector3 titleLogoPosition = new Vector3(0, 132, 0);
+    private Vector3 startButtonPosition = new Vector3(0, -70, 0);
+
+    private Vector3 pistolSelectUIPosition = new Vector3(-750, 370, 0);
+    private Vector3 smgSelectUIPosition = new Vector3(-750, 370, 0);
+
     public GameObject scoreText;
+    public GameObject gameOverText;
     public Transform restartButton;
+
+
+    public Image titleLogo;
+    public Button startButton;
+    public GameObject pistolSelectUI;
+    public GameObject smgSelectUI;
 
     public GameObject gameOverPanel;
 
@@ -36,8 +50,20 @@ public class HUDManager : MonoBehaviour
     public void GameStart()
     {
         gameOverPanel.SetActive(false);
+        gameOverText.SetActive(false);
+
+        scoreText.SetActive(true);
+
+        titleLogo.enabled = false;
+        startButton.enabled = false;
+        startButton.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().enabled = false;
+
+        pistolSelectUI.SetActive(true);
+        smgSelectUI.SetActive(true);
+
         scoreText.transform.localPosition = scoreTextPosition[0];
         restartButton.localPosition = restartButtonPosition[0];
+
     }
 
     public void SetScore(int score)
@@ -48,6 +74,8 @@ public class HUDManager : MonoBehaviour
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
+        gameOverText.SetActive(true);
+
         scoreText.transform.localPosition = scoreTextPosition[1];
         restartButton.localPosition = restartButtonPosition[1];
     }

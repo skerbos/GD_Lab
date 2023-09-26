@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 288890916870551283}
   - component: {fileID: 7926443183100761591}
   - component: {fileID: 5059370661091312112}
+  - component: {fileID: 5005394949686518769}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -248,4 +249,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffeb09950e317c2439ae422e1b41f6aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinCollect: {fileID: 8300000, guid: d885ffc842af744d89f7d595ffcc176a, type: 3}
+--- !u!114 &5005394949686518769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7118266607883812500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667375c60aa2c5f4aa4f749a974a55c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parameter: 0
+  useInt:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

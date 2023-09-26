@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    public GameManager gameManager;
+
     public float horizontalSpeed = 10f;
     public float maxSpeed = 20f;
     public float smoothVal = 0.2f;
@@ -39,14 +42,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Image titleLogo;
     public Button startButton;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI gameOverText;
-    public Button restartButton;
-    public Image translucentOverlay;
-    private Vector3 originalScoreTextPos = new Vector3(-780, 480, 0);
-    private Vector3 originalRestartButtonPos = new Vector3(850, 480, 0);
-    private Vector3 gameOverScoreTextPos = new Vector3(0, 0, 0);
-    private Vector3 gameOverRestartButtonPos = new Vector3(0, -135, 0);
     public GameObject pistolSelectUI;
     public GameObject smgSelectUI;
 
@@ -60,19 +55,21 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 30;
+
         marioRb = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
 
         marioAnimator.SetBool("onGround", onGroundState);
 
+        /*
         Time.timeScale = 0f;
 
         scoreText.enabled = false;
         gameOverText.enabled = false;
         restartButton.enabled = false;
-
-        pistolSelectUI.SetActive(false);
-        smgSelectUI.SetActive(false);
+        */
+        //pistolSelectUI.SetActive(false);
+        //smgSelectUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -296,16 +293,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void RestartButtonCallback(int input)
     {
-        ResetGame();
+        //ResetGame();
         Time.timeScale = 1.0f;
     }
 
     public void StartButtonCallback(int input)
     {
-        StartGame();
+        //StartGame();
         Time.timeScale = 1.0f;
     }
 
+    /*
     private void StartGame()
     {
         scoreText.text = "Score: 0";
@@ -323,8 +321,14 @@ public class PlayerMovement : MonoBehaviour
         pistolSelectUI.SetActive(true);
         smgSelectUI.SetActive(true);
         
+    }*/
+
+    public void GameStart()
+    {
+           
     }
 
+    /*
     private void ResetGame()
     {
         marioRb.velocity = new Vector3(0, 0, 0);
@@ -350,8 +354,9 @@ public class PlayerMovement : MonoBehaviour
         // Reset Animation
         marioAnimator.SetTrigger("gameRestart");
         alive = true;
-    }
+    }*/
 
+    /*
     private void GameOver()
     {
         translucentOverlay.enabled = true;
@@ -360,6 +365,11 @@ public class PlayerMovement : MonoBehaviour
         restartButton.transform.localPosition = gameOverRestartButtonPos;
 
         Time.timeScale = 0f;
+    }*/
+
+    public void GameOver()
+    {
+        //gameManager.GameOver();
     }
 
     public void GameRestart()
