@@ -13,6 +13,7 @@ public class ActionManager : MonoBehaviour
     public UnityEvent<int> altMoveCheck;
     public UnityEvent<Vector2> aimLook;
     public UnityEvent<bool> fire;
+    public UnityEvent<bool, Vector2> altFire;
     public UnityEvent firePoint;
 
     public void OnJumpHoldAction(InputAction.CallbackContext context)
@@ -92,6 +93,20 @@ public class ActionManager : MonoBehaviour
             
     }
 
+    public void OnAltFireAction(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Vector2 point = context.ReadValue<Vector2>();
+            altFire.Invoke(true, point);
+        }
+        else if (context.canceled)
+        {
+            Vector2 point = context.ReadValue<Vector2>();
+            altFire.Invoke(false, point);
+        }
+    }
+
     public void OnFirePointAction(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -99,6 +114,7 @@ public class ActionManager : MonoBehaviour
             Vector2 point = context.ReadValue<Vector2>();
             Debug.Log($"Point detected: {point}");
         }
+
     }
 
     public void OnAimLookAction(InputAction.CallbackContext context)

@@ -4,24 +4,53 @@ using UnityEngine;
 
 public class EnemyClass : MonoBehaviour
 {
+    public GameManager gameManager;
 
     public float maxHealth;
     public float moveSpeed;
 
-    private float currentHealth;
+    public float currentHealth;
 
-    private Rigidbody2D rb;
+    public float currentHealthNormalized;
+
+    public bool isDead = false;
+
+    public Vector3 startPosition = new Vector3(9f, -0.5f, 0f);
+
+    public Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = transform.GetComponent<Rigidbody2D>();
+
+        currentHealth = maxHealth;
+        NormalizeHealth();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void NormalizeHealth()
+    {
+        currentHealthNormalized = currentHealth / maxHealth;
+    }
+
+    public void TakeDamage(float damageValue)
+    {
+        currentHealth -= damageValue;
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Death();
+        }
+
+        NormalizeHealth();
     }
 
     public virtual void Move()
@@ -32,5 +61,12 @@ public class EnemyClass : MonoBehaviour
     public virtual void Attack()
     { 
 
+    }
+
+    public void Death()
+    {
+        gameManager.IncreaseScore(1);
+
+        isDead = true;
     }
 }

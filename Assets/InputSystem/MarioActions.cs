@@ -80,6 +80,15 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""altfire"",
+                    ""type"": ""Button"",
+                    ""id"": ""88eb8aab-dc8d-4858-86be-b67c2eca8d52"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,39 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""action"": ""firepoint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""55b51963-422c-4bb6-8400-7850c04ead6c"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""altfire"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""9baded42-0dd7-4265-ad17-481fd51669da"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""altfire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""0d177cfd-cf32-41a3-b072-f53e4e122750"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB&M"",
+                    ""action"": ""altfire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -223,6 +265,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         m_gamplay_jumphold = m_gamplay.FindAction("jumphold", throwIfNotFound: true);
         m_gamplay_fire = m_gamplay.FindAction("fire", throwIfNotFound: true);
         m_gamplay_firepoint = m_gamplay.FindAction("firepoint", throwIfNotFound: true);
+        m_gamplay_altfire = m_gamplay.FindAction("altfire", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -290,6 +333,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_gamplay_jumphold;
     private readonly InputAction m_gamplay_fire;
     private readonly InputAction m_gamplay_firepoint;
+    private readonly InputAction m_gamplay_altfire;
     public struct GamplayActions
     {
         private @MarioActions m_Wrapper;
@@ -300,6 +344,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         public InputAction @jumphold => m_Wrapper.m_gamplay_jumphold;
         public InputAction @fire => m_Wrapper.m_gamplay_fire;
         public InputAction @firepoint => m_Wrapper.m_gamplay_firepoint;
+        public InputAction @altfire => m_Wrapper.m_gamplay_altfire;
         public InputActionMap Get() { return m_Wrapper.m_gamplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -327,6 +372,9 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
             @firepoint.started += instance.OnFirepoint;
             @firepoint.performed += instance.OnFirepoint;
             @firepoint.canceled += instance.OnFirepoint;
+            @altfire.started += instance.OnAltfire;
+            @altfire.performed += instance.OnAltfire;
+            @altfire.canceled += instance.OnAltfire;
         }
 
         private void UnregisterCallbacks(IGamplayActions instance)
@@ -349,6 +397,9 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
             @firepoint.started -= instance.OnFirepoint;
             @firepoint.performed -= instance.OnFirepoint;
             @firepoint.canceled -= instance.OnFirepoint;
+            @altfire.started -= instance.OnAltfire;
+            @altfire.performed -= instance.OnAltfire;
+            @altfire.canceled -= instance.OnAltfire;
         }
 
         public void RemoveCallbacks(IGamplayActions instance)
@@ -383,5 +434,6 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         void OnJumphold(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnFirepoint(InputAction.CallbackContext context);
+        void OnAltfire(InputAction.CallbackContext context);
     }
 }

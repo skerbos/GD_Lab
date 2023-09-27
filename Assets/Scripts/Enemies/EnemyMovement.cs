@@ -10,14 +10,10 @@ public class EnemyMovement : EnemyClass
     private int moveRight = -1;
     private Vector2 velocity;
 
-    public Vector3 startPosition = new Vector3(9f, -0.5f, 0f);
-
-    private Rigidbody2D enemyRb;
-
     // Start is called before the first frame update
     void Start()
     {
-        enemyRb = GetComponent<Rigidbody2D>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         originalX = transform.position.x;
         ComputeVelocity();
@@ -26,7 +22,7 @@ public class EnemyMovement : EnemyClass
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(enemyRb.position.x - originalX) < maxOffset)
+        if (Mathf.Abs(rb.position.x - originalX) < maxOffset)
         {
             Move();
         }
@@ -46,7 +42,7 @@ public class EnemyMovement : EnemyClass
 
     public override void Move()
     {
-        enemyRb.MovePosition(enemyRb.position + velocity * enemyPatrolTime * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + velocity * enemyPatrolTime * Time.fixedDeltaTime);
     }
 
     public void GameRestart()
@@ -55,6 +51,8 @@ public class EnemyMovement : EnemyClass
         originalX = transform.position.x;
         moveRight = -1;
         ComputeVelocity();
+
+        currentHealth = maxHealth;
     }
 
 }

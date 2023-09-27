@@ -10,6 +10,8 @@ public class WeaponHolder : MonoBehaviour
     private GameObject currentWeapon;
 
     private bool firing = false;
+    private bool altFiring = false;
+    private Vector2 altFiringPoint;
 
     private float weaponOffset = 0.5f;
 
@@ -55,9 +57,20 @@ public class WeaponHolder : MonoBehaviour
         Debug.Log("FIRE STATE: " + firing.ToString());
     }
 
+    public void AltFiringCheck(bool mouseDown, Vector2 point)
+    {
+        altFiring = mouseDown;
+        altFiringPoint = point;
+    }
+
     void UseCurrentWeaponFire()
     {
         currentWeapon.GetComponent<WeaponClass>().Fire(firing);
+    }
+
+    void UseCurrentWeaponAltFire()
+    {
+        currentWeapon.GetComponent<WeaponClass>().AltFire(altFiring, altFiringPoint);
     }
 
     void SwitchWeapons()

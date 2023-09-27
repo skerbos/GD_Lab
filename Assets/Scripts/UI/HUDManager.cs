@@ -33,6 +33,8 @@ public class HUDManager : MonoBehaviour
     public GameObject pistolSelectUI;
     public GameObject smgSelectUI;
 
+    public GameObject healthbar;
+
     public GameObject gameOverPanel;
 
     // Start is called before the first frame update
@@ -64,6 +66,8 @@ public class HUDManager : MonoBehaviour
         scoreText.transform.localPosition = scoreTextPosition[0];
         restartButton.localPosition = restartButtonPosition[0];
 
+        DisplayEnemyHealthbars();
+
     }
 
     public void SetScore(int score)
@@ -82,6 +86,10 @@ public class HUDManager : MonoBehaviour
 
     public void DisplayEnemyHealthbars()
     {
-        
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            GameObject healthbarClone = Instantiate(healthbar, transform);
+            healthbarClone.GetComponent<HealthBarBehavior>().attachedEnemy = enemy;
+        }
     }
 }

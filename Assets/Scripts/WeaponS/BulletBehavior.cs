@@ -47,10 +47,12 @@ public class BulletBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.transform.CompareTag("Enemy") || col.transform.CompareTag("Obstacles") || col.transform.CompareTag("Ground"))
+        if (col.transform.CompareTag("Enemy"))
         {
             TextMeshProUGUI damageNumberClone = Instantiate(damageNumberText, Camera.main.WorldToScreenPoint(col.transform.position) + damageNumberTextOffset, col.transform.rotation);
             damageNumberClone.GetComponent<DamageNumberBehavior>().damageValue = bulletDamage;
+
+            col.gameObject.GetComponent<EnemyClass>().TakeDamage(bulletDamage);
 
             Destroy(gameObject);
         }
