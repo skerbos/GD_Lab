@@ -9,6 +9,8 @@ public class WeaponHolder : MonoBehaviour
 
     private GameObject currentWeapon;
 
+    private bool firing = false;
+
     private float weaponOffset = 0.5f;
 
     private GameObject player;
@@ -24,7 +26,7 @@ public class WeaponHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        UseCurrentWeaponFire();
     }
 
     public void AimLook(Vector2 value)
@@ -47,9 +49,15 @@ public class WeaponHolder : MonoBehaviour
         }
     }
 
-    public void UseCurrentWeaponFire()
+    public void FiringCheck(bool mouseDown)
     {
-        currentWeapon.GetComponent<WeaponClass>().Fire();
+        firing = mouseDown;
+        Debug.Log("FIRE STATE: " + firing.ToString());
+    }
+
+    void UseCurrentWeaponFire()
+    {
+        currentWeapon.GetComponent<WeaponClass>().Fire(firing);
     }
 
     void SwitchWeapons()

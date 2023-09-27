@@ -21,9 +21,9 @@ public class WeaponClass : MonoBehaviour
         //Fire();
     }
 
-    public void Fire()
+    public void Fire(bool firing)
     {
-        if ((Time.time >= (lastShotTime + fireRate)))
+        if (firing && (Time.time >= (lastShotTime + fireRate)))
         {
             GameObject bulletClone = Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
             bulletClone.transform.Rotate(0, 0, Random.Range(-spread, spread));

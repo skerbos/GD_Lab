@@ -12,7 +12,7 @@ public class ActionManager : MonoBehaviour
     public UnityEvent<int> moveCheck;
     public UnityEvent<int> altMoveCheck;
     public UnityEvent<Vector2> aimLook;
-    public UnityEvent fire;
+    public UnityEvent<bool> fire;
     public UnityEvent firePoint;
 
     public void OnJumpHoldAction(InputAction.CallbackContext context)
@@ -77,18 +77,19 @@ public class ActionManager : MonoBehaviour
 
     public void OnFireAction(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            Debug.Log("mouse click started");
-            fire.Invoke();
-        }
-        else if (context.performed)
+        if (context.performed)
         {
             Debug.Log("mouse click performed");
-            fire.Invoke();
+            bool mouseHeldDown = context.ReadValueAsButton();
+            fire.Invoke(mouseHeldDown);
         }
         else if (context.canceled)
+        {
             Debug.Log("mouse click cancelled");
+            bool mouseHeldDown = context.ReadValueAsButton();
+            fire.Invoke(mouseHeldDown);
+        }
+            
     }
 
     public void OnFirePointAction(InputAction.CallbackContext context)

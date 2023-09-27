@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : EnemyClass
 {
     private float originalX;
     private float maxOffset = 5f;
@@ -28,23 +28,23 @@ public class EnemyMovement : MonoBehaviour
     {
         if (Mathf.Abs(enemyRb.position.x - originalX) < maxOffset)
         {
-            MoveGoomba();
+            Move();
         }
         else
         {
             // change direction
             moveRight *= -1;
             ComputeVelocity();
-            MoveGoomba();
+            Move();
         }
     }
 
     void ComputeVelocity()
     {
-        velocity = new Vector2((moveRight) * maxOffset / enemyPatrolTime, 0);
+        velocity = new Vector2((moveRight * moveSpeed) * maxOffset / enemyPatrolTime, 0);
     }
 
-    void MoveGoomba()
+    public override void Move()
     {
         enemyRb.MovePosition(enemyRb.position + velocity * enemyPatrolTime * Time.fixedDeltaTime);
     }

@@ -79,4 +79,9 @@ public class HUDManager : MonoBehaviour
         scoreText.transform.localPosition = scoreTextPosition[1];
         restartButton.localPosition = restartButtonPosition[1];
     }
+
+    public void DisplayEnemyHealthbars()
+    {
+        
+    }
 }
