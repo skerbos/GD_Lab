@@ -303,69 +303,10 @@ public class PlayerMovement : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
-    /*
-    private void StartGame()
-    {
-        scoreText.text = "Score: 0";
-        scoreText.transform.localPosition = originalScoreTextPos;
-        restartButton.transform.localPosition = originalRestartButtonPos;
-
-        scoreText.enabled = true;
-        restartButton.enabled = true;
-
-        titleLogo.enabled = false;
-        startButton.enabled = false;
-        startButton.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().enabled = false; // start button text
-        translucentOverlay.enabled = false;
-
-        pistolSelectUI.SetActive(true);
-        smgSelectUI.SetActive(true);
-        
-    }*/
-
     public void GameStart()
     {
            
     }
-
-    /*
-    private void ResetGame()
-    {
-        marioRb.velocity = new Vector3(0, 0, 0);
-        marioRb.transform.position = new Vector3(-9.27f, 1.25f, 0f);
-        faceRightState = true;
-        marioSprite.flipX = false;
-
-        gameCamera.position = new Vector3(0, 4, -10);
-
-        scoreText.text = "Score: 0";
-        scoreText.transform.localPosition = originalScoreTextPos;
-        restartButton.transform.localPosition = originalRestartButtonPos;
-        gameOverText.enabled = false;
-        translucentOverlay.enabled = false;
-
-        foreach (Transform eachChild in enemies.transform)
-        {
-            eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
-        }
-
-        jumpOverGoomba.score = 0;
-
-        // Reset Animation
-        marioAnimator.SetTrigger("gameRestart");
-        alive = true;
-    }*/
-
-    /*
-    private void GameOver()
-    {
-        translucentOverlay.enabled = true;
-        gameOverText.enabled = true;
-        scoreText.transform.localPosition = gameOverScoreTextPos;
-        restartButton.transform.localPosition = gameOverRestartButtonPos;
-
-        Time.timeScale = 0f;
-    }*/
 
     public void GameOver()
     {

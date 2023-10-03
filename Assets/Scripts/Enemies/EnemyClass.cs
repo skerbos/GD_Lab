@@ -13,6 +13,8 @@ public class EnemyClass : MonoBehaviour
 
     public float currentHealthNormalized;
 
+    public bool isLockedOn = false;
+
     public bool isDead = false;
 
     public Vector3 startPosition = new Vector3(9f, -0.5f, 0f);

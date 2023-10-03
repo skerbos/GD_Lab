@@ -8,6 +8,11 @@ public class BulletBehavior : MonoBehaviour
     public float bulletSpeed = 10f;
     public float bulletLifeTime = 5f;
     public float bulletDamage = 10f;
+
+    public bool isHoming = false;
+    public float angleChangeSpeed = 20f;
+    public GameObject lockOnTarget;
+
     public TextMeshProUGUI damageNumberText;
     private Vector3 damageNumberTextOffset;
 
@@ -29,11 +34,23 @@ public class BulletBehavior : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        HomingMove();
         Destroy(gameObject, bulletLifeTime);
     }
 
     void Move()
     {
+        if (isHoming) return;
+        bulletRb.velocity = transform.right * bulletSpeed;
+    }
+
+    void HomingMove()
+    {
+        if (!isHoming) return;
+        Vector2 direction = (Vector2)lockOnTarget.transform.position - bulletRb.position;
+        direction.Normalize();
+        float rotateAmount = Vector3.Cross(direction, transform.right).z;
+        bulletRb.angularVelocity = -angleChangeSpeed * rotateAmount;
         bulletRb.velocity = transform.right * bulletSpeed;
     }
 

@@ -9,8 +9,8 @@ public class WeaponHolder : MonoBehaviour
 
     private GameObject currentWeapon;
 
-    private bool firing = false;
-    private bool altFiring = false;
+    private bool firing;
+    private bool altFiring;
     private Vector2 altFiringPoint;
 
     private float weaponOffset = 0.5f;
@@ -29,6 +29,7 @@ public class WeaponHolder : MonoBehaviour
     void Update()
     {
         UseCurrentWeaponFire();
+        UseCurrentWeaponAltFire();
     }
 
     public void AimLook(Vector2 value)
@@ -61,6 +62,7 @@ public class WeaponHolder : MonoBehaviour
     {
         altFiring = mouseDown;
         altFiringPoint = point;
+        Debug.Log("ALT FIRE STATE: " + altFiring.ToString() + " ALT FIRE POINT: " + altFiringPoint.ToString());
     }
 
     void UseCurrentWeaponFire()

@@ -83,12 +83,12 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""altfire"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""88eb8aab-dc8d-4858-86be-b67c2eca8d52"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [

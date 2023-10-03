@@ -230,8 +230,12 @@ MonoBehaviour:
   damage: 10
   fireRate: 0.1
   spread: 2
+  altFireRate: 0.2
+  altSpread: 0
   bullet: {fileID: 5142106393689424861, guid: 80351d32f77be994fa88e76a7e4c5154, type: 3}
+  altBullet: {fileID: 5142106393689424861, guid: 786edcd6c37e9b64cae8c8f0d5133655, type: 3}
   barrel: {fileID: 6422547071564164317}
+  lockOnCrosshair: {fileID: 8580848991705654405, guid: c107c7c6bed2fdb4fb74e1169e201fd1, type: 3}
   gunAudio: {fileID: 7279650613464685054}
   gunFire: {fileID: 8300000, guid: 1062a0b242744b340ba8ff1aef7796aa, type: 3}
   mainCamera: {fileID: 0}

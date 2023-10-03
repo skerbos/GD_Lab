@@ -22,9 +22,10 @@ public class LockOnCrosshairBehavior : MonoBehaviour
         FollowLockOnTarget();
     }
 
-    void FollowLockOnTarget()
+    void FollowLockOnTarget()   
     {
-        transform.position = Camera.main.WorldToScreenPoint(lockOnTarget.transform.position);
+        //transform.position = Camera.main.WorldToScreenPoint(lockOnTarget.transform.position);
+        transform.position = lockOnTarget.transform.position;
     }
 
     public void DestroyOnWeaponAltFire()
