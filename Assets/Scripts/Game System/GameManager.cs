@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
     public UnityEvent gameRestart;
     public UnityEvent<int> scoreChange;
     public UnityEvent gameOver;
+    public UnityEvent nextWave;
 
     private int score = 0;
+    private int currentWave = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -56,5 +58,12 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         gameOver.Invoke();
+    }
+
+    public void NextWave()
+    { 
+        // Check if no enemies left
+
+        // Spawn new wave of enemies
     }
 }

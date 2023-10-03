@@ -20,7 +20,12 @@ public class EnemyManager : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            child.GetComponent<EnemyMovement>().GameRestart();
+            child.GetComponent<EnemyClass>().GameRestart();
         }
+    }
+
+    public void NextWave()
+    {
+        
     }
 }

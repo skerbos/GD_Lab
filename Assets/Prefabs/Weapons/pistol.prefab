@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 6422547071564164317}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.755, y: 0.19, z: 0}
+  m_LocalPosition: {x: 0.32, y: 0.025, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60,7 +60,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8385506162535386287}
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -142972023, guid: 18170d943d69bb34b807cd8c2bc6f2fa, type: 3}
+  m_Sprite: {fileID: 1188843013, guid: 193e1f5d7632ea84cb470277dec895b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -238,4 +238,7 @@ MonoBehaviour:
   lockOnCrosshair: {fileID: 8580848991705654405, guid: c107c7c6bed2fdb4fb74e1169e201fd1, type: 3}
   gunAudio: {fileID: 7279650613464685054}
   gunFire: {fileID: 8300000, guid: 1062a0b242744b340ba8ff1aef7796aa, type: 3}
+  altGunFire: {fileID: 8300000, guid: 6339a95ae74c5bf47a0b2484a6cf2d21, type: 3}
   mainCamera: {fileID: 0}
+  lockOnCrosshairs: []
+  lockOnTargets: []

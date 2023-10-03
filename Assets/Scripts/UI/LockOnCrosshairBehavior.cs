@@ -28,8 +28,4 @@ public class LockOnCrosshairBehavior : MonoBehaviour
         transform.position = lockOnTarget.transform.position;
     }
 
-    public void DestroyOnWeaponAltFire()
-    { 
-
-    }
 }

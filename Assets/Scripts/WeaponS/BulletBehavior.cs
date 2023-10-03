@@ -13,6 +13,10 @@ public class BulletBehavior : MonoBehaviour
     public float angleChangeSpeed = 20f;
     public GameObject lockOnTarget;
 
+    public GameObject explosionObject;
+    public AudioSource bulletAudio;
+    public AudioClip bulletHitClip;
+
     public TextMeshProUGUI damageNumberText;
     private Vector3 damageNumberTextOffset;
 
@@ -54,10 +58,19 @@ public class BulletBehavior : MonoBehaviour
         bulletRb.velocity = transform.right * bulletSpeed;
     }
 
+    void SpawnAltBulletExplosion()
+    {
+        Instantiate(explosionObject, transform.position, transform.rotation);
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.transform.CompareTag("Enemy") || col.transform.CompareTag("Obstacles") || col.transform.CompareTag("Ground"))
         {
+            SpawnAltBulletExplosion();
+
+            Camera.main.transform.GetComponent<CameraBehavior>().ShakeCamera(0.5f, 0.5f);
+
             Destroy(gameObject);
         }
     }
@@ -69,9 +82,14 @@ public class BulletBehavior : MonoBehaviour
             TextMeshProUGUI damageNumberClone = Instantiate(damageNumberText, Camera.main.WorldToScreenPoint(col.transform.position) + damageNumberTextOffset, col.transform.rotation);
             damageNumberClone.GetComponent<DamageNumberBehavior>().damageValue = bulletDamage;
 
+            SpawnAltBulletExplosion();
+
             col.gameObject.GetComponent<EnemyClass>().TakeDamage(bulletDamage);
+
+            Camera.main.transform.GetComponent<CameraBehavior>().ShakeCamera(0.5f, 1f);
 
             Destroy(gameObject);
         }
     }
+
 }

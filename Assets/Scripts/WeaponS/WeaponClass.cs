@@ -22,6 +22,7 @@ public class WeaponClass : MonoBehaviour
 
     public AudioSource gunAudio;
     public AudioClip gunFire;
+    public AudioClip altGunFire;
 
     public GameObject mainCamera;
 
@@ -89,6 +90,9 @@ public class WeaponClass : MonoBehaviour
 
                     lastAltShotTime = Time.time;
 
+                    gunAudio.PlayOneShot(altGunFire);
+
+                    mainCamera.GetComponent<CameraBehavior>().ShakeCamera(0.2f, 0.3f);
 
                 }
             }
