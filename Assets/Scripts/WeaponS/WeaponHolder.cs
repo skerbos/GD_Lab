@@ -55,14 +55,12 @@ public class WeaponHolder : MonoBehaviour
     public void FiringCheck(bool mouseDown)
     {
         firing = mouseDown;
-        Debug.Log("FIRE STATE: " + firing.ToString());
     }
 
     public void AltFiringCheck(bool mouseDown, Vector2 point)
     {
         altFiring = mouseDown;
         altFiringPoint = point;
-        Debug.Log("ALT FIRE STATE: " + altFiring.ToString() + " ALT FIRE POINT: " + altFiringPoint.ToString());
     }
 
     void UseCurrentWeaponFire()

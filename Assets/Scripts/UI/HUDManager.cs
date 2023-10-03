@@ -30,8 +30,8 @@ public class HUDManager : MonoBehaviour
 
     public Image titleLogo;
     public Button startButton;
-    public GameObject pistolSelectUI;
-    public GameObject smgSelectUI;
+
+    public GameObject waveCounter;
 
     public GameObject healthbar;
 
@@ -55,13 +55,12 @@ public class HUDManager : MonoBehaviour
         gameOverText.SetActive(false);
 
         scoreText.SetActive(true);
+        waveCounter.GetComponent<TextMeshProUGUI>().text = "Wave 1";
+        waveCounter.SetActive(true);
 
         titleLogo.enabled = false;
         startButton.enabled = false;
         startButton.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().enabled = false;
-
-        pistolSelectUI.SetActive(true);
-        smgSelectUI.SetActive(true);
 
         scoreText.transform.localPosition = scoreTextPosition[0];
         restartButton.localPosition = restartButtonPosition[0];
@@ -82,6 +81,13 @@ public class HUDManager : MonoBehaviour
 
         scoreText.transform.localPosition = scoreTextPosition[1];
         restartButton.localPosition = restartButtonPosition[1];
+    }
+
+    public void NextWave(int currentWave)
+    {
+        waveCounter.GetComponent<TextMeshProUGUI>().text = "Wave " + currentWave.ToString();
+
+        DisplayEnemyHealthbars();
     }
 
     public void DisplayEnemyHealthbars()

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2443774417633590267}
   - component: {fileID: 5863187778382634092}
   - component: {fileID: 8492388185459444251}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pistolBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,13 +137,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 30
   bulletLifeTime: 0.5
-  bulletDamage: 10
+  bulletDamage: 3
   isHoming: 0
   angleChangeSpeed: 20
   lockOnTarget: {fileID: 0}
+  hitCameraShakeDuration: 0.1
+  hitCameraShakeIntensity: 0.1
   explosionObject: {fileID: 726058440928107272, guid: deb3a3f104ddd6c4fb76df10bffaa662, type: 3}
   bulletAudio: {fileID: 0}
-  altBulletHitClip: {fileID: 0}
+  bulletHitClip: {fileID: 0}
   damageNumberText: {fileID: 3206922063618342582, guid: 5f935bb17066cb04589d6617609d13e4, type: 3}
 --- !u!50 &5863187778382634092
 Rigidbody2D:
@@ -213,8 +215,8 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Time: 5
+  m_SortingOrder: 2
+  m_Time: 0.2
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3

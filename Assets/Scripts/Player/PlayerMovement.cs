@@ -32,9 +32,9 @@ public class PlayerMovement : MonoBehaviour
     public Animator marioAnimator;
 
     public AudioSource marioAudio;
-    public AudioClip marioDeath;
+    public AudioSource marioDeathAudio;
 
-    private bool onGroundState = true;
+    private bool onGroundState = false;
     private Vector2 currentVelocity;
     private Rigidbody2D marioRb;
     private SpriteRenderer marioSprite;
@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
             //Death Animation
             marioAnimator.Play("mario-die");
-            marioAudio.PlayOneShot(marioDeath);
+            marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
             alive = false;
         }
     }
@@ -162,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (!alive && !onGroundState) return;
+        if (!alive || !onGroundState) return;
 
         marioRb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         onGroundState = false;
@@ -173,64 +173,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void JumpHold()
     {
-        if (!alive && !jumpedState) return;
+        if (!alive || (!jumpedState && !onGroundState)) return;
 
         marioRb.AddForce(Vector2.up * jumpSpeed * holdJumpSpeed, ForceMode2D.Force);
+        onGroundState = false;
         jumpedState = false;
-    }
-
-    void HorizontalMovement()
-    {
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-
-        if (Mathf.Abs(moveHorizontal) > 0)
-        {
-            Vector2 movement = new Vector2(moveHorizontal, 0);
-
-            if (marioRb.velocity.magnitude < maxSpeed)
-            {
-                marioRb.AddForce(movement * horizontalSpeed);
-            }
-        }
-        else
-        {
-            // Smooth stopping 
-            marioRb.velocity = new Vector2(Mathf.SmoothDamp(marioRb.velocity.x, Vector2.zero.x, ref currentVelocity.x, smoothVal), marioRb.velocity.y);
-        }
-    }
-
-    void VerticalMovement()
-    {
-        // Initial tap jump
-        if (Input.GetKeyDown("space") && onGroundState)
-        {
-            marioRb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
-            onGroundState = false;
-            jumpTime = 0;
-        }
-
-        // Faster falling
-        if (!onGroundState && marioRb.velocity.y >= 0)
-        {
-            marioRb.gravityScale = gravityScale;
-        }
-        else if (!onGroundState && marioRb.velocity.y < 0)
-        {
-            marioRb.gravityScale = fallingGravityScale;
-        }
-
-        // Extended jump when jump key is held down, slightly higher jump and air time
-        if (Input.GetKey("space") && !onGroundState && jumpTime <= jumpButtonTime)
-        {
-            marioRb.AddForce(Vector2.up * holdJumpSpeed, ForceMode2D.Force);
-            jumpTime += Time.deltaTime;
-        }
-
-        // Stop extended jump after jump key is lifted
-        if (Input.GetKeyUp("space") && !onGroundState)
-        {
-            jumpTime = jumpButtonTime + 1f;
-        }
     }
 
     void PlayDeathImpluse()

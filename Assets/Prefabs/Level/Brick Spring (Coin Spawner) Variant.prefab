@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: isCoinSpawner
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5862557330960615398, guid: 99ce1558ed4e01146b3632a4038a539f, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 6018566495827871099, guid: 99ce1558ed4e01146b3632a4038a539f, type: 3}
       propertyPath: m_Name
       value: Brick Spring (Coin Spawner) Variant

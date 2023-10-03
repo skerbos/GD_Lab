@@ -36,6 +36,11 @@ public class HealthBarBehavior : MonoBehaviour
 
     void DestroyOnEnemyDeath()
     {
+        if (attachedEnemy == null)
+        {
+            Destroy(gameObject);
+        }
+
         if (attachedEnemy.GetComponent<EnemyClass>().isDead)
         {
             Destroy(attachedEnemy);

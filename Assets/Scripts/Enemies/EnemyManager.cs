@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+
+    public int startingNumberOfEnemies = 5;
+    public int currentWaveNumberOfEnemies;
+    public int enemyNumberIncrement = 2;
+
+    public List<GameObject> Enemies;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentWaveNumberOfEnemies = startingNumberOfEnemies;
     }
 
     // Update is called once per frame
@@ -16,16 +24,53 @@ public class EnemyManager : MonoBehaviour
         
     }
 
-    public void GameRestart()
+    public void GameStart()
     {
-        foreach (Transform child in transform)
+        currentWaveNumberOfEnemies = startingNumberOfEnemies;
+
+        for (int i = 0; i < currentWaveNumberOfEnemies; i++)
         {
-            child.GetComponent<EnemyClass>().GameRestart();
+            GameObject enemyClone = Instantiate(Enemies[0], transform);
+            enemyClone.transform.position = RandomEnemySpawnLocation();
         }
     }
 
-    public void NextWave()
+    public void GameRestart()
     {
-        
+        currentWaveNumberOfEnemies = startingNumberOfEnemies;
+
+        foreach (Transform child in transform)
+        {
+            child.gameObject.GetComponent<EnemyClass>().isDead = true;
+        }
+
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+
+        for (int i = 0; i < currentWaveNumberOfEnemies; i++)
+        {
+            GameObject enemyClone = Instantiate(Enemies[0], transform);
+            enemyClone.transform.position = RandomEnemySpawnLocation();
+        }
+    }
+    public void NextWave(int currentWave)
+    {
+        currentWaveNumberOfEnemies = startingNumberOfEnemies + currentWave * enemyNumberIncrement;
+
+        for (int i = 0; i < currentWaveNumberOfEnemies; i++)
+        {
+            GameObject enemyClone = Instantiate(Enemies[0], transform);
+            enemyClone.transform.position = RandomEnemySpawnLocation(); 
+        }
+    }
+
+    Vector2 RandomEnemySpawnLocation()
+    {
+        Vector2 randomSpawnPosition = new Vector2(Random.Range(-25, 45), Random.Range(6, 7));
+
+        return randomSpawnPosition;
     }
 }

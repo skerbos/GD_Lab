@@ -20,29 +20,33 @@ public class ActionManager : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("JumpHold was started");
+
         }
         else if (context.performed)
         {
-            Debug.Log("JumpHold was performed");
-            Debug.Log(context.duration);
             jumpHold.Invoke();
         }
         else if (context.canceled)
-            Debug.Log("JumpHold was cancelled");
+        {
+            
+        }
     }
 
     public void OnJumpAction(InputAction.CallbackContext context)
     {
         if (context.started)
-            Debug.Log("Jump was started");
+        {
+
+        }
+
         else if (context.performed)
         {
             jump.Invoke();
-            Debug.Log("Jump was performed");
         }
         else if (context.canceled)
-            Debug.Log("Jump was cancelled");
+        {
+            
+        }
 
     }
 
@@ -50,13 +54,11 @@ public class ActionManager : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("move started");
             int faceRight = context.ReadValue<float>() > 0 ? 1 : -1;
             moveCheck.Invoke(faceRight);
         }
         if (context.canceled)
         {
-            Debug.Log("move stopped");
             moveCheck.Invoke(0);
         }
     }
@@ -65,13 +67,11 @@ public class ActionManager : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("move started");
             int moveDir = context.ReadValue<float>() > 0? 1 : -1;
             altMoveCheck.Invoke(moveDir);
         }
         if (context.canceled)
         {
-            Debug.Log("move stopped");
             altMoveCheck.Invoke(0);
         }
     }
@@ -80,13 +80,11 @@ public class ActionManager : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("mouse click performed");
             bool mouseHeldDown = context.ReadValueAsButton();
             fire.Invoke(mouseHeldDown);
         }
         else if (context.canceled)
         {
-            Debug.Log("mouse click cancelled");
             bool mouseHeldDown = context.ReadValueAsButton();
             fire.Invoke(mouseHeldDown);
         }
@@ -112,7 +110,6 @@ public class ActionManager : MonoBehaviour
         if (context.performed)
         {
             Vector2 point = context.ReadValue<Vector2>();
-            Debug.Log($"Point detected: {point}");
         }
 
     }

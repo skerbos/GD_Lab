@@ -26,8 +26,6 @@ public class EnemyClass : MonoBehaviour
     {
         rb = transform.GetComponent<Rigidbody2D>();
 
-        startPosition = transform.position;
-
         currentHealth = maxHealth;
         NormalizeHealth();
 
@@ -73,14 +71,5 @@ public class EnemyClass : MonoBehaviour
         gameManager.IncreaseScore(1);
 
         isDead = true;
-    }
-
-    public void GameRestart()
-    {
-        transform.localPosition = startPosition;
-
-        currentHealth = maxHealth;
-        NormalizeHealth();
-        isDead = false;
     }
 }

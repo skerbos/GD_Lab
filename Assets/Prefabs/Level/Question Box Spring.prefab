@@ -198,7 +198,7 @@ MonoBehaviour:
   boxCheckDistance: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 768
   brownBlock: {fileID: 21300060, guid: 82bc45c4496284f4c823d1b837f65ec4, type: 3}
   coinHolder: {fileID: 4732971465859153105, guid: 50b655e793674884a942770412d92423, type: 3}
   hitDisabled: 0

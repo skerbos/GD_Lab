@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8800644714679991462}
   - component: {fileID: 8436093607815684639}
-  - component: {fileID: 3509430175288306340}
   - component: {fileID: 6521089583814132397}
   - component: {fileID: -7326453433722591139}
   - component: {fileID: 1207783045463341936}
@@ -49,36 +48,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8580848991705654405}
   m_CullTransparentMesh: 1
---- !u!114 &3509430175288306340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8580848991705654405}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.990566, g: 0.14391239, b: 0.21138059, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 7197167380097731842, guid: 0ae13d9b2f1664d4eaca2a6011e9828c, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!212 &6521089583814132397
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -120,8 +89,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 7197167380097731842, guid: 0ae13d9b2f1664d4eaca2a6011e9828c, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -1472115337, guid: 0ae13d9b2f1664d4eaca2a6011e9828c, type: 3}
+  m_Color: {r: 1, g: 0.018452026, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -155,7 +124,7 @@ AudioSource:
   m_GameObject: {fileID: 8580848991705654405}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3979115706328692753, guid: d28fd1a935c06f84e94deb1ed18fbd18, type: 2}
   m_audioClip: {fileID: 8300000, guid: ce3387df2e8ea784abbbc365e43fc369, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1

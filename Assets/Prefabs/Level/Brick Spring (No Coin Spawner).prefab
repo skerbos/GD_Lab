@@ -197,7 +197,7 @@ MonoBehaviour:
   boxCheckDistance: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 768
   coinHolder: {fileID: 4732971465859153105, guid: 50b655e793674884a942770412d92423, type: 3}
   isCoinSpawner: 0
   hitDisabled: 0

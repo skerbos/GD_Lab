@@ -10,10 +10,13 @@ public class GameManager : MonoBehaviour
     public UnityEvent gameRestart;
     public UnityEvent<int> scoreChange;
     public UnityEvent gameOver;
-    public UnityEvent nextWave;
+    public UnityEvent<int> nextWave;
+
+    public GameObject enemyManager;
 
     private int score = 0;
     private int currentWave = 1;
+    private int enemiesRemaining;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +27,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateEnemiesRemaining();
+        NextWave();
     }
 
     public void GameStart()
@@ -37,6 +41,8 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
         SetScore(score);
+
+        currentWave = 1;
 
         gameRestart.Invoke();
 
@@ -61,9 +67,16 @@ public class GameManager : MonoBehaviour
     }
 
     public void NextWave()
-    { 
-        // Check if no enemies left
+    {
+        if (enemiesRemaining == 0)
+        {
+            currentWave++;
+            nextWave.Invoke(currentWave);
+        }
+    }
 
-        // Spawn new wave of enemies
+    void UpdateEnemiesRemaining()
+    {
+        enemiesRemaining = enemyManager.transform.childCount;
     }
 }

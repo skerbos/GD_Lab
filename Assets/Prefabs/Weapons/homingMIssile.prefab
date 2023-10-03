@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -183,11 +183,12 @@ MonoBehaviour:
   bulletLifeTime: 30
   bulletDamage: 10
   isHoming: 1
-  angleChangeSpeed: 300
+  angleChangeSpeed: 450
   lockOnTarget: {fileID: 0}
+  hitCameraShakeDuration: 0.5
+  hitCameraShakeIntensity: 0.7
   explosionObject: {fileID: 726058440928107272, guid: 47f59158ececd8446bdb843c04f902ff, type: 3}
   bulletAudio: {fileID: 2197231956138107953}
-  altBulletHitClip: {fileID: 8300000, guid: eebde5ff5bbd1e14183f2dcaeccb3f03, type: 3}
   damageNumberText: {fileID: 3206922063618342582, guid: 5f935bb17066cb04589d6617609d13e4, type: 3}
 --- !u!82 &2197231956138107953
 AudioSource:
@@ -198,7 +199,7 @@ AudioSource:
   m_GameObject: {fileID: 5142106393689424861}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1083914428364543246, guid: d28fd1a935c06f84e94deb1ed18fbd18, type: 2}
   m_audioClip: {fileID: 8300000, guid: eebde5ff5bbd1e14183f2dcaeccb3f03, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -326,12 +327,12 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Time: 0.2
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 0.3
     widthCurve:
       serializedVersion: 2
       m_Curve:

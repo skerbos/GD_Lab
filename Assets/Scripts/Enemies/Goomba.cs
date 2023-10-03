@@ -15,6 +15,8 @@ public class Goomba : EnemyClass
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
+        startPosition = transform.position;
+
         lastMovedTime = moveDuration;
     }
 
@@ -27,6 +29,11 @@ public class Goomba : EnemyClass
     private void FixedUpdate()
     {
         Move();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        direction *= -1;
     }
 
     public override void Move()
