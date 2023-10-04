@@ -17,6 +17,8 @@ public class EnemyClass : MonoBehaviour
 
     public bool isDead = false;
 
+    public GameObject deathParticles;
+
     public Vector3 startPosition;
 
     public Rigidbody2D rb;
@@ -68,7 +70,12 @@ public class EnemyClass : MonoBehaviour
 
     public void Death()
     {
-        gameManager.IncreaseScore(1);
+        gameManager.IncreaseScore(10);
+
+        GameObject deathParticleClone = Instantiate(deathParticles, transform.position, transform.rotation);
+        Destroy(deathParticleClone, 0.5f);
+
+        Camera.main.GetComponent<CameraBehavior>().ShakeCamera(0.1f, 0.5f);
 
         isDead = true;
     }

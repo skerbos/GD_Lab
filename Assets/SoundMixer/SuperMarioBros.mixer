@@ -122,6 +122,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -171684640887055163}
+  - {fileID: 134730536538339468}
   m_UserColorIndex: 3
   m_Mute: 0
   m_Solo: 0
@@ -469,36 +470,40 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: d56cca1c0312b6046a5d31db481b4c52
   m_FloatValues:
+    8c1f8b829ee8ba54aaaeb24984b6583d: 0.041
+    265a6db236a294f48b65c985c76a7767: 100
     0dff1ab32e80f0a4da04fbeb9f8b122f: -3.1841109
     a1069625cffc65843abde7a59d9107e4: 0
     4f5142a694c99084b988a8f00fb7dd43: -10.345207
     529811580f7245743b2828e70f5b2c87: 0
-    b94805cb6cd3a484187d96dfc32a2fe4: -10.345207
+    b94805cb6cd3a484187d96dfc32a2fe4: -15.421318
+    7d402a8cc5bc69b4391d7fc05d364045: 1
     dce00fccea5673049a623427e353a173: 5
-    ff32629d54ab98744a20eaa6be5a1d1a: -15.421314
+    def5a32d8fdefb94d8154af184c7cf2a: 0
+    ff32629d54ab98744a20eaa6be5a1d1a: -15.3
     09ce5fed2fbffbd4f826f0a68a21c9a4: -0.27209988
   m_TransitionOverrides: {}
---- !u!244 &176881659597951355
+--- !u!244 &134730536538339468
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_EffectID: 67535002329052749aa0f2c47b5c10c1
+  m_EffectID: 790104f2e5b00154eb032f9af1552fd0
   m_EffectName: Echo
-  m_MixLevel: 2c3ad7947b7f28e458cd00be45a07155
+  m_MixLevel: 1aabe2f900a00114d8ff27b02ab971b6
   m_Parameters:
   - m_ParameterName: Delay
-    m_GUID: dce00fccea5673049a623427e353a173
+    m_GUID: 265a6db236a294f48b65c985c76a7767
   - m_ParameterName: Decay
-    m_GUID: 1cd843380b964ea4d9697fce609956a0
+    m_GUID: def5a32d8fdefb94d8154af184c7cf2a
   - m_ParameterName: Max channels
-    m_GUID: 3f858e5c85c0a5d4b9c3a472cf6a3103
+    m_GUID: 9789689fb84dce64d99a352bb37748fa
   - m_ParameterName: Drymix
-    m_GUID: 817646ac9688be747a7381fdbf697438
+    m_GUID: d21c5db555931ae4d9a52c46518d7891
   - m_ParameterName: Wetmix
-    m_GUID: b24aa9d0c7e4fcd428195078f412b0a5
+    m_GUID: 3a3c26512a8526e42b4f1a727d4a766c
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
@@ -620,7 +625,6 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -4616173110020237920}
-  - {fileID: 176881659597951355}
   - {fileID: -1012726781255546651}
   m_UserColorIndex: 3
   m_Mute: 0

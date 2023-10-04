@@ -35,6 +35,11 @@ public class CameraBehavior : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
     }
 
+    void OffsetTowardsMouse()
+    {
+        
+    }
+
     public void ShakeCamera(float duration, float power)
     {
         shakeTimeRemaining = duration;
