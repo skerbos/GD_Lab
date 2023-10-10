@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (!alive || !onGroundState || !isFlying) return;
+        if (!alive || !onGroundState || isFlying) return;
 
         marioRb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         onGroundState = false;
@@ -175,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void JumpHold()
     {
-        if (!alive || (!jumpedState && !onGroundState) || !isFlying) return;
+        if (!alive || (!jumpedState && !onGroundState) || isFlying) return;
 
         marioRb.AddForce(Vector2.up * jumpSpeed * holdJumpSpeed, ForceMode2D.Force);
         onGroundState = false;

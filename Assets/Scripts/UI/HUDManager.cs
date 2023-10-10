@@ -17,15 +17,11 @@ public class HUDManager : MonoBehaviour
         new Vector3(0,-150,0)
     };
 
-    private Vector3 titleLogoPosition = new Vector3(0, 132, 0);
-    private Vector3 startButtonPosition = new Vector3(0, -70, 0);
-
-    private Vector3 pistolSelectUIPosition = new Vector3(-750, 370, 0);
-    private Vector3 smgSelectUIPosition = new Vector3(-750, 370, 0);
-
     public GameObject scoreText;
     public GameObject gameOverText;
+    public GameObject pauseText;
     public Transform restartButton;
+    public Button pauseButton;
 
 
     public Image titleLogo;
@@ -40,6 +36,8 @@ public class HUDManager : MonoBehaviour
     private void Awake()
     {
         GameManager.instance.gameStart.AddListener(GameStart);
+        GameManager.instance.gamePause.AddListener(GamePause);
+        GameManager.instance.gameResume.AddListener(GameResume);
         GameManager.instance.gameOver.AddListener(GameOver);
         GameManager.instance.gameRestart.AddListener(GameStart);
         GameManager.instance.scoreChange.AddListener(SetScore);
@@ -62,6 +60,8 @@ public class HUDManager : MonoBehaviour
     {
         gameOverPanel.SetActive(false);
         gameOverText.SetActive(false);
+        pauseText.SetActive(false);
+        pauseButton.enabled = true;
 
         scoreText.SetActive(true);
         waveCounter.GetComponent<TextMeshProUGUI>().text = "Wave 1";
@@ -78,6 +78,18 @@ public class HUDManager : MonoBehaviour
 
     }
 
+    public void GamePause()
+    {
+        gameOverPanel.SetActive(true);
+        pauseText.SetActive(true);
+    }
+
+    public void GameResume()
+    {
+        gameOverPanel.SetActive(false);
+        pauseText.SetActive(false);
+    }
+
     public void SetScore(int score)
     {
         scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
@@ -87,6 +99,8 @@ public class HUDManager : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
         gameOverText.SetActive(true);
+
+        pauseButton.enabled = false;
 
         scoreText.transform.localPosition = scoreTextPosition[1];
         restartButton.localPosition = restartButtonPosition[1];

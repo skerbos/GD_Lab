@@ -14,6 +14,8 @@ public class CameraBehavior : MonoBehaviour
     private float shakeFadeTime;
     private float shakeTimeRemaining;
 
+    private Vector3 originalPos;
+
     private Vector3 velocity = Vector3.zero;
 
 
@@ -21,12 +23,15 @@ public class CameraBehavior : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+
+        originalPos = transform.position;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
         FollowPlayer();
+        ReturnToAnchor();
     }
 
     void FollowPlayer()
@@ -37,6 +42,13 @@ public class CameraBehavior : MonoBehaviour
         Vector3 delta = player.transform.position - Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
         Vector3 destination = transform.position + delta + new Vector3(0, 2, 0);
         transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
+    }
+
+    void ReturnToAnchor()
+    {
+        if (followPlayerCheck) return;
+
+        transform.position = Vector3.SmoothDamp(transform.position, originalPos, ref velocity, dampTime);
     }
 
     void OffsetTowardsMouse()

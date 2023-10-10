@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1796049650144753543}
   m_Layer: 0
   m_Name: Enemies
-  m_TagString: Untagged
+  m_TagString: Enemy Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,4 +47,5 @@ MonoBehaviour:
   startingNumberOfEnemies: 5
   currentWaveNumberOfEnemies: 0
   enemyNumberIncrement: 2
-  Enemies: []
+  Enemies:
+  - {fileID: 7509563822694976775, guid: 9ae05c7cccf888a42b1429b1f570c8d1, type: 3}

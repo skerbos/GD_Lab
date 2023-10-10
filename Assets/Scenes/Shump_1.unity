@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 414445811}
   - component: {fileID: 414445810}
   - component: {fileID: 414445813}
+  - component: {fileID: 414445814}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -231,6 +232,50 @@ MonoBehaviour:
   player: {fileID: 0}
   dampTime: 0.15
   followPlayerCheck: 0
+--- !u!68 &414445814
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414445809}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 12.5, y: 7}
+  - {x: -12.5, y: 7}
+  - {x: -12.5, y: -7}
+  - {x: 12.5, y: -7}
+  - {x: 12.5, y: 7}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &470032744
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,11 +518,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3372486499736069213, guid: a985db2e110fee94a83af1ab57d9589c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.6
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 3372486499736069213, guid: a985db2e110fee94a83af1ab57d9589c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.03
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3372486499736069213, guid: a985db2e110fee94a83af1ab57d9589c, type: 3}
       propertyPath: m_LocalPosition.z
