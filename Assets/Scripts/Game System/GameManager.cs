@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
 {
 
     public UnityEvent gameStart;
+    public UnityEvent gamePause;
     public UnityEvent gameRestart;
     public UnityEvent<int> scoreChange;
     public UnityEvent gameOver;
@@ -39,6 +40,12 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1.0f;
 
         SceneManager.activeSceneChanged += SceneSetup;
+    }
+
+    public void GamePause()
+    {
+        gamePause.Invoke();
+        Time.timeScale = 0.0f;
     }
 
     public void SceneSetup(Scene current, Scene next)

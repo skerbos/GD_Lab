@@ -11,6 +11,7 @@ public class ActionManager : MonoBehaviour
     public UnityEvent jumpHold;
     public UnityEvent<int> moveCheck;
     public UnityEvent<int> altMoveCheck;
+    public UnityEvent<int> moveVerticalCheck;
     public UnityEvent<Vector2> aimLook;
     public UnityEvent<bool> fire;
     public UnityEvent<bool, Vector2> altFire;
@@ -73,6 +74,20 @@ public class ActionManager : MonoBehaviour
         if (context.canceled)
         {
             altMoveCheck.Invoke(0);
+        }
+    }
+
+    public void OnMoveVerticalAction(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            int moveDir = context.ReadValue<float>() > 0 ? 1 : -1;
+            moveVerticalCheck.Invoke(moveDir);
+        }
+
+        if (context.canceled)
+        {
+            moveVerticalCheck.Invoke(0);
         }
     }
 

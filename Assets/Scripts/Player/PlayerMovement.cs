@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpTime;
 
     private int moveDir;
+    private int moveDirVertical;
     private bool jumpedState = false;
 
     [System.NonSerialized]
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource marioAudio;
     public AudioSource marioDeathAudio;
 
+    public bool isFlying = false;
     private bool onGroundState = false;
     private Vector2 currentVelocity;
     private Rigidbody2D marioRb;
@@ -60,6 +62,11 @@ public class PlayerMovement : MonoBehaviour
         marioAnimator = GetComponent<Animator>();
 
         marioAnimator.SetBool("onGround", onGroundState);
+
+        if (isFlying)
+        {
+            marioRb.gravityScale = 0.0f;
+        }
     }
 
     // Update is called once per frame
@@ -101,6 +108,8 @@ public class PlayerMovement : MonoBehaviour
         AltMove(moveDir);
         //HorizontalMovement();
         //VerticalMovement();
+        if (isFlying)
+            MoveVertical(moveDirVertical);
 
         setAnimGroundBool();
     }
@@ -131,14 +140,31 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void MoveVertical(int value)
+    {
+        if (Mathf.Abs(value) > 0)
+        {
+            marioRb.velocity = new Vector2(marioRb.velocity.x, Mathf.Lerp(value * horizontalSpeed, marioRb.velocity.y, smoothVal));
+        }
+        else
+        {
+            marioRb.velocity = new Vector2(marioRb.velocity.x, Mathf.SmoothDamp(marioRb.velocity.y, Vector2.zero.y, ref currentVelocity.y, smoothVal));
+        }
+    }
+
     public void AltMoveCheck(int value)
     {
         moveDir = value;
     }
 
+    public void MoveVerticalCheck(int value)
+    {
+        moveDirVertical = value;
+    }
+
     public void Jump()
     {
-        if (!alive || !onGroundState) return;
+        if (!alive || !onGroundState || !isFlying) return;
 
         marioRb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         onGroundState = false;
@@ -149,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void JumpHold()
     {
-        if (!alive || (!jumpedState && !onGroundState)) return;
+        if (!alive || (!jumpedState && !onGroundState) || !isFlying) return;
 
         marioRb.AddForce(Vector2.up * jumpSpeed * holdJumpSpeed, ForceMode2D.Force);
         onGroundState = false;

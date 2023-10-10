@@ -240,6 +240,7 @@ MonoBehaviour:
   deathImpulse: 5
   gameCamera: {fileID: 0}
   marioDeathAudio: {fileID: 1377033893296961042}
+  isFlying: 0
 --- !u!114 &2680340123363190213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,6 +540,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 88eb8aab-dc8d-4858-86be-b67c2eca8d52
     m_ActionName: gamplay/altfire[/Mouse/rightButton,/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6992547727615160160}
+        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+        m_MethodName: OnMoveVerticalAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 284f4554-0872-4326-9bed-b5153f34b793
+    m_ActionName: gamplay/movevertical[/Keyboard/s,/Keyboard/w]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: KB&M
   m_DefaultActionMap: gamplay
@@ -595,6 +612,21 @@ MonoBehaviour:
       - m_Target: {fileID: 1481740839244411207}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: AltMoveCheck
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  moveVerticalCheck:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1481740839244411207}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: moveVerticalCheck
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

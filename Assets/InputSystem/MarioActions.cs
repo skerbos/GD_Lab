@@ -37,6 +37,15 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""movevertical"",
+                    ""type"": ""Value"",
+                    ""id"": ""284f4554-0872-4326-9bed-b5153f34b793"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""aimlook"",
                     ""type"": ""Value"",
                     ""id"": ""047be507-cce9-47e1-ab2f-ef9b693295a1"",
@@ -234,6 +243,39 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""action"": ""altfire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""aa4434af-4d7d-4421-802b-55468a75bd1c"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""movevertical"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""2ac9a150-943a-49a3-80fc-c27fe28f3181"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""movevertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""474fc70b-5ea7-4421-bc6f-436313945975"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""movevertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -260,6 +302,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         // gamplay
         m_gamplay = asset.FindActionMap("gamplay", throwIfNotFound: true);
         m_gamplay_move = m_gamplay.FindAction("move", throwIfNotFound: true);
+        m_gamplay_movevertical = m_gamplay.FindAction("movevertical", throwIfNotFound: true);
         m_gamplay_aimlook = m_gamplay.FindAction("aimlook", throwIfNotFound: true);
         m_gamplay_jump = m_gamplay.FindAction("jump", throwIfNotFound: true);
         m_gamplay_jumphold = m_gamplay.FindAction("jumphold", throwIfNotFound: true);
@@ -328,6 +371,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_gamplay;
     private List<IGamplayActions> m_GamplayActionsCallbackInterfaces = new List<IGamplayActions>();
     private readonly InputAction m_gamplay_move;
+    private readonly InputAction m_gamplay_movevertical;
     private readonly InputAction m_gamplay_aimlook;
     private readonly InputAction m_gamplay_jump;
     private readonly InputAction m_gamplay_jumphold;
@@ -339,6 +383,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         private @MarioActions m_Wrapper;
         public GamplayActions(@MarioActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @move => m_Wrapper.m_gamplay_move;
+        public InputAction @movevertical => m_Wrapper.m_gamplay_movevertical;
         public InputAction @aimlook => m_Wrapper.m_gamplay_aimlook;
         public InputAction @jump => m_Wrapper.m_gamplay_jump;
         public InputAction @jumphold => m_Wrapper.m_gamplay_jumphold;
@@ -357,6 +402,9 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
             @move.started += instance.OnMove;
             @move.performed += instance.OnMove;
             @move.canceled += instance.OnMove;
+            @movevertical.started += instance.OnMovevertical;
+            @movevertical.performed += instance.OnMovevertical;
+            @movevertical.canceled += instance.OnMovevertical;
             @aimlook.started += instance.OnAimlook;
             @aimlook.performed += instance.OnAimlook;
             @aimlook.canceled += instance.OnAimlook;
@@ -382,6 +430,9 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
             @move.started -= instance.OnMove;
             @move.performed -= instance.OnMove;
             @move.canceled -= instance.OnMove;
+            @movevertical.started -= instance.OnMovevertical;
+            @movevertical.performed -= instance.OnMovevertical;
+            @movevertical.canceled -= instance.OnMovevertical;
             @aimlook.started -= instance.OnAimlook;
             @aimlook.performed -= instance.OnAimlook;
             @aimlook.canceled -= instance.OnAimlook;
@@ -429,6 +480,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
     public interface IGamplayActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnMovevertical(InputAction.CallbackContext context);
         void OnAimlook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnJumphold(InputAction.CallbackContext context);
