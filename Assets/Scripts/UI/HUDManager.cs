@@ -37,6 +37,15 @@ public class HUDManager : MonoBehaviour
 
     public GameObject gameOverPanel;
 
+    private void Awake()
+    {
+        GameManager.instance.gameStart.AddListener(GameStart);
+        GameManager.instance.gameOver.AddListener(GameOver);
+        GameManager.instance.gameRestart.AddListener(GameStart);
+        GameManager.instance.scoreChange.AddListener(SetScore);
+        GameManager.instance.nextWave.AddListener(NextWave);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

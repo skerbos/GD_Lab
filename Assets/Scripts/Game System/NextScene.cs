@@ -26,6 +26,8 @@ public class NextScene : MonoBehaviour
         {
             Debug.Log("Change scene");
             SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Single);
+
+            other.gameObject.transform.position = new Vector3(0, 3, 0);
         }
     }
 }

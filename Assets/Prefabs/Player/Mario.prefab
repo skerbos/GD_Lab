@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 6992547727615160160}
   m_Layer: 9
   m_Name: Mario
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,15 +239,7 @@ MonoBehaviour:
   jumpTime: 0
   deathImpulse: 5
   gameCamera: {fileID: 0}
-  marioAnimator: {fileID: 407748129667798420}
-  marioAudio: {fileID: 1377033893296961042}
-  marioDeathAudio: {fileID: 0}
-  titleLogo: {fileID: 0}
-  startButton: {fileID: 0}
-  pistolSelectUI: {fileID: 0}
-  smgSelectUI: {fileID: 0}
-  enemies: {fileID: 0}
-  jumpOverGoomba: {fileID: 0}
+  marioDeathAudio: {fileID: 1377033893296961042}
 --- !u!114 &2680340123363190213
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -21,7 +22,8 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 0.0f;
+        Time.timeScale = 1.0f;
+        enemyManager = GameObject.FindWithTag("Enemy Manager");
     }
 
     // Update is called once per frame
@@ -35,6 +37,14 @@ public class GameManager : Singleton<GameManager>
     {
         gameStart.Invoke();
         Time.timeScale = 1.0f;
+
+        SceneManager.activeSceneChanged += SceneSetup;
+    }
+
+    public void SceneSetup(Scene current, Scene next)
+    {
+        gameStart.Invoke();
+        SetScore(score);
     }
 
     public void GameRestart()

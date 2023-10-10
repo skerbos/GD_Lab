@@ -12,6 +12,14 @@ public class EnemyManager : MonoBehaviour
     public List<GameObject> Enemies;
 
 
+    private void Awake()
+    {
+        GameManager.instance.gameStart.AddListener(GameStart);
+        GameManager.instance.gameRestart.AddListener(GameRestart);
+        GameManager.instance.gameOver.AddListener(GameRestart);
+        GameManager.instance.nextWave.AddListener(NextWave);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

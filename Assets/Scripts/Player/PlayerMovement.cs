@@ -19,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
     public float jumpButtonTime = 0.3f;
     public float jumpTime;
 
-    private bool moving = false;
     private int moveDir;
     private bool jumpedState = false;
 
@@ -29,9 +28,9 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform gameCamera;
 
-    public Animator marioAnimator;
+    private Animator marioAnimator;
 
-    public AudioSource marioAudio;
+    private AudioSource marioAudio;
     public AudioSource marioDeathAudio;
 
     private bool onGroundState = false;
@@ -40,16 +39,15 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
 
-    public Image titleLogo;
-    public Button startButton;
-    public GameObject pistolSelectUI;
-    public GameObject smgSelectUI;
-
-    public GameObject enemies;
 
     int collisionLayerMask = (1 << 6) | (1 << 7) | (1 << 8);
 
-    public JumpOverGoomba jumpOverGoomba;
+    private void Awake()
+    {
+        GameManager.instance.gameStart.AddListener(GameStart);
+        GameManager.instance.gameRestart.AddListener(GameRestart);
+        GameManager.instance.gameOver.AddListener(GameOver);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -58,18 +56,10 @@ public class PlayerMovement : MonoBehaviour
 
         marioRb = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
+        marioAudio = GetComponent<AudioSource>();
+        marioAnimator = GetComponent<Animator>();
 
         marioAnimator.SetBool("onGround", onGroundState);
-
-        /*
-        Time.timeScale = 0f;
-
-        scoreText.enabled = false;
-        gameOverText.enabled = false;
-        restartButton.enabled = false;
-        */
-        //pistolSelectUI.SetActive(false);
-        //smgSelectUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -138,20 +128,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             marioRb.velocity = new Vector2(Mathf.SmoothDamp(marioRb.velocity.x, Vector2.zero.x, ref currentVelocity.x, smoothVal), marioRb.velocity.y);
-        }
-    }
-
-    public void MoveCheck(int value)
-    {
-        if (value == 0)
-        {
-            moving = false;
-        }
-        else
-        {
-            FlipSprite(value);
-            moving = true;
-            Move(value);
         }
     }
 
@@ -252,7 +228,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void GameStart()
     {
-           
+        
     }
 
     public void GameOver()
