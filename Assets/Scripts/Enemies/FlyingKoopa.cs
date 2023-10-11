@@ -14,7 +14,11 @@ public class FlyingKoopa : EnemyClass
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.instance;
         player = GameObject.FindWithTag("Player");
+
+        hudManager = GameObject.Find("Canvas").GetComponent<HUDManager>();
+        hudManager.CreateHealthBar(gameObject);
 
         lastFiredTime = Time.time;
     }
@@ -22,12 +26,13 @@ public class FlyingKoopa : EnemyClass
     // Update is called once per frame
     void Update()
     {
+        Move();
         Attack();
     }
 
     public override void Move()
     {
-        
+        rb.velocity = new Vector2(-moveSpeed, 0);
     }
 
     public override void Attack()

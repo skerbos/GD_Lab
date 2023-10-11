@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyClass : MonoBehaviour
 {
     public GameManager gameManager;
+    public HUDManager hudManager;
 
     public float maxHealth;
     public float moveSpeed;
@@ -23,6 +24,8 @@ public class EnemyClass : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    public bool hasEnteredPlayArea = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,14 +33,12 @@ public class EnemyClass : MonoBehaviour
 
         currentHealth = maxHealth;
         NormalizeHealth();
-
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void NormalizeHealth()
@@ -68,7 +69,7 @@ public class EnemyClass : MonoBehaviour
 
     }
 
-    public void Death()
+    public virtual void Death()
     {
         gameManager.IncreaseScore(10);
 
@@ -79,4 +80,23 @@ public class EnemyClass : MonoBehaviour
 
         isDead = true;
     }
+
+    public void OnTriggerEnter2D(Collider2D col)
+    {
+        if (hasEnteredPlayArea) return;
+
+        if (col.gameObject.layer == 13)
+        {
+            hasEnteredPlayArea = true;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D col)
+    {
+        if (!hasEnteredPlayArea) return;
+
+        if (col.gameObject.layer == 13)
+            Destroy(gameObject);
+    }
+
 }

@@ -19,6 +19,6 @@ public class PlayerGameOver : MonoBehaviour
 
     public void GameOverCallback()
     {
-        gameManager.GameOver();
+        gameManager.ShmupGameOver();
     }
 }

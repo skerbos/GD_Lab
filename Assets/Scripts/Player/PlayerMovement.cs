@@ -40,15 +40,19 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D marioRb;
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
+    private Vector3 originalPos;
 
 
     int collisionLayerMask = (1 << 6) | (1 << 7) | (1 << 8);
 
     private void Awake()
     {
-        GameManager.instance.gameStart.AddListener(GameStart);
-        GameManager.instance.gameRestart.AddListener(GameRestart);
-        GameManager.instance.gameOver.AddListener(GameOver);
+        //GameManager.instance.gameStart.AddListener(GameStart);
+        GameManager.instance.shmupGameStart.AddListener(ShmupGameStart);
+        //GameManager.instance.gameRestart.AddListener(GameRestart);
+        GameManager.instance.shmupGameRestart.AddListener(ShmupGameRestart);
+        //GameManager.instance.gameOver.AddListener(GameOver);
+
     }
 
     // Start is called before the first frame update
@@ -56,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Application.targetFrameRate = 30;
 
+        originalPos = transform.position;
         marioRb = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
         marioAudio = GetComponent<AudioSource>();
@@ -252,11 +257,6 @@ public class PlayerMovement : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
-    public void GameStart()
-    {
-        
-    }
-
     public void GameOver()
     {
         //gameManager.GameOver();
@@ -278,5 +278,32 @@ public class PlayerMovement : MonoBehaviour
         // reset camera position
         gameCamera.position = new Vector3(0, 4, -10);
 
+    }
+
+    public void ShmupGameStart()
+    {
+        
+    }
+
+    public void ShmupGameRestart()
+    {
+        // reset position
+        transform.position = originalPos;
+
+        // reset sprite direction
+        faceRightState = true;
+        marioSprite.flipX = false;
+
+        //  reset animation
+        marioAnimator.SetTrigger("gameRestart");
+        alive = true;
+
+        gameObject.transform.GetChild(0).GetChild(0).GetComponent<WeaponClass>().bulletsPerShot = 1;
+        gameObject.transform.GetChild(0).GetChild(0).GetComponent<WeaponClass>().fireRate = 0.1f;
+    }
+
+    public void ShmupGameOver()
+    {
+        
     }
 }

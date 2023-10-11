@@ -195,8 +195,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  hudManager: {fileID: 0}
   maxHealth: 5
-  moveSpeed: 0
+  moveSpeed: 3
   currentHealth: 5
   currentHealthNormalized: 1
   isLockedOn: 0
@@ -204,6 +205,7 @@ MonoBehaviour:
   deathParticles: {fileID: 4349981294169454128, guid: ee589c000b53a1e40b143f52fa304f41, type: 3}
   startPosition: {x: 0, y: 0, z: 0}
   rb: {fileID: 3886270865079432264}
+  hasEnteredPlayArea: 0
 --- !u!82 &-8985583459543303901
 AudioSource:
   m_ObjectHideFlags: 0

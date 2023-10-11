@@ -230,6 +230,7 @@ MonoBehaviour:
   damage: 10
   fireRate: 0.1
   spread: 2
+  bulletsPerShot: 1
   altFireRate: 0.1
   altSpread: 10
   bullet: {fileID: 5142106393689424861, guid: 80351d32f77be994fa88e76a7e4c5154, type: 3}

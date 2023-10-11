@@ -159,7 +159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
 --- !u!82 &8481168687644921468
 AudioSource:
@@ -291,8 +291,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  hudManager: {fileID: 0}
   maxHealth: 15
-  moveSpeed: 2
+  moveSpeed: 5
   currentHealth: 15
   currentHealthNormalized: 1
   isLockedOn: 0
@@ -300,5 +301,6 @@ MonoBehaviour:
   deathParticles: {fileID: 4349981294169454128, guid: ee589c000b53a1e40b143f52fa304f41, type: 3}
   startPosition: {x: 0, y: 0, z: 0}
   rb: {fileID: 7812141989501572407}
-  koopaBullet: {fileID: 5142106393689424861, guid: 80351d32f77be994fa88e76a7e4c5154, type: 3}
-  fireRate: 0.5
+  hasEnteredPlayArea: 0
+  koopaBullet: {fileID: 3448706043927917776, guid: 3c9f98f60611b2c48af31c786ff162e7, type: 3}
+  fireRate: 1

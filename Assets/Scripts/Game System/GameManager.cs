@@ -12,12 +12,19 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent gameResume;
     public UnityEvent gameRestart;
     public UnityEvent<int> scoreChange;
+    public UnityEvent<int> highScoreChange;
     public UnityEvent gameOver;
     public UnityEvent<int> nextWave;
+
+    public UnityEvent shmupGameStart;
+    public UnityEvent shmupGameRestart;
+    public UnityEvent shmupGameOver;
+    public UnityEvent shmupBackToHome;
 
     public GameObject enemyManager;
 
     private int score = 0;
+    private int highScore = 0;
     private int currentWave = 1;
     private int enemiesRemaining;
 
@@ -31,8 +38,9 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        UpdateEnemiesRemaining();
-        NextWave();
+        //UpdateEnemiesRemaining();
+        //NextWave();
+        UpdateHighScore();
     }
 
     public void GameStart()
@@ -57,8 +65,9 @@ public class GameManager : Singleton<GameManager>
 
     public void SceneSetup(Scene current, Scene next)
     {
-        gameStart.Invoke();
-        SetScore(score);
+        shmupGameStart.Invoke();
+        SetScore(0);
+        SetHighScore(highScore);
     }
 
     public void GameRestart()
@@ -69,6 +78,11 @@ public class GameManager : Singleton<GameManager>
         currentWave = 1;
 
         gameRestart.Invoke();
+
+        foreach(GameObject enemyBullet in GameObject.FindGameObjectsWithTag("EnemyBullet"))
+        {
+            Destroy(enemyBullet);
+        }
 
         Time.timeScale = 1.0f;
     }
@@ -82,6 +96,20 @@ public class GameManager : Singleton<GameManager>
     public void SetScore(int score)
     {
         scoreChange.Invoke(score);
+    }
+
+    public void UpdateHighScore()
+    {
+        if (score > highScore)
+        {
+            highScore = score;
+            SetHighScore(highScore);
+        }
+    }
+
+    public void SetHighScore(int highScore)
+    {
+        highScoreChange.Invoke(highScore);
     }
 
     public void GameOver()
@@ -98,6 +126,58 @@ public class GameManager : Singleton<GameManager>
             nextWave.Invoke(currentWave);
         }
     }
+
+    public void ShmupGameStart()
+    {
+        Time.timeScale = 1.0f;
+        shmupGameStart.Invoke();
+
+        SceneManager.activeSceneChanged += SceneSetup;
+
+        SetScore(score);
+        SetHighScore(score);
+    }
+
+    public void ShmupGameRestart()
+    {
+        Time.timeScale = 1.0f;
+        shmupGameRestart.Invoke();
+
+
+        if (highScore < score)
+        {
+            highScore = score;
+            SetHighScore(highScore);
+        }
+
+        score = 0;
+        SetScore(score);
+    }
+
+    public void ShmupGameOver()
+    {
+        Time.timeScale = 0.0f;
+        shmupGameOver.Invoke();
+
+
+        if (highScore < score)
+        {
+            highScore = score;
+            SetHighScore(highScore);
+        }
+    }
+
+    public void ShmupBackToHome()
+    {
+        Time.timeScale = 1.0f;
+        shmupBackToHome.Invoke();
+
+        SceneManager.activeSceneChanged += SceneSetup;
+
+        SetScore(0);
+        SetHighScore(highScore);
+    }
+
 
     void UpdateEnemiesRemaining()
     {

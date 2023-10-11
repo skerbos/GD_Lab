@@ -7,7 +7,9 @@ public class FishNormal : EnemyClass
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameManager.instance;
+        hudManager = GameObject.Find("Canvas").GetComponent<HUDManager>();
+        hudManager.CreateHealthBar(gameObject);
     }
 
     // Update is called once per frame
@@ -23,7 +25,7 @@ public class FishNormal : EnemyClass
 
     public override void Move()
     {
-        rb.velocity = new Vector2(-moveSpeed, Mathf.Sin(Time.fixedTime * 10));
+        rb.velocity = new Vector2(-moveSpeed, Mathf.Sin(Time.fixedTime * 5) * 2);
     }
 
     public override void Attack()

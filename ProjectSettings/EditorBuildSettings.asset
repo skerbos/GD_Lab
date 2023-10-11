@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene 1_2.unity
     guid: 715f029f07806c84bb5e898ee3ed6a4f
+  - enabled: 1
+    path: Assets/Scenes/Start Screen.unity
+    guid: 83a4fb06133da114fbf8ca3db993d735
+  - enabled: 1
+    path: Assets/Scenes/Shmup_1.unity
+    guid: 461dcd65b1c12864f851b03eca8d98d5
   m_configObjects: {}

@@ -13,7 +13,10 @@ public class HealthBarBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.SetParent(GameObject.Find("Canvas").transform);
+        StartCoroutine(InitializeHealthbar());
+
+        gameObject.SetActive(true);
+        //transform.SetParent(GameObject.Find("Canvas").transform);
     }
 
     // Update is called once per frame
@@ -26,25 +29,51 @@ public class HealthBarBehavior : MonoBehaviour
 
     void FollowAttachedEnemy()
     {
+        if (attachedEnemy == null) return;
         transform.position = Camera.main.WorldToScreenPoint(attachedEnemy.transform.position + positionOffset);
     }
 
     void ShowEnemyHealth()
     {
+        if (attachedEnemy == null) return;
         transform.GetComponent<Slider>().value = attachedEnemy.GetComponent<EnemyClass>().currentHealthNormalized;
     }
 
     void DestroyOnEnemyDeath()
     {
+        if (gameObject == null) return;
+
+        if (attachedEnemy != null)
+        {
+            if (attachedEnemy.GetComponent<EnemyClass>().isDead)
+            {
+                Destroy(attachedEnemy);
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        /*
         if (attachedEnemy == null)
         {
             Destroy(gameObject);
+            return;
         }
 
         if (attachedEnemy.GetComponent<EnemyClass>().isDead)
         {
             Destroy(attachedEnemy);
             Destroy(gameObject);
-        }
+        }*/
+    }
+
+    IEnumerator InitializeHealthbar()
+    {
+        gameObject.SetActive(false);
+        transform.SetParent(GameObject.Find("Canvas").transform);
+        yield return new WaitForSecondsRealtime(0.1f);
     }
 }

@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc7ad9332c3b0f4e8eef24b8d8dc477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingNumberOfEnemies: 5
+  startingNumberOfEnemies: 1
   currentWaveNumberOfEnemies: 0
   enemyNumberIncrement: 2
   Enemies:
-  - {fileID: 7509563822694976775, guid: 9ae05c7cccf888a42b1429b1f570c8d1, type: 3}
+  - {fileID: 1544713895929405097, guid: cd377a70779345a4bb42a707fa8b354e, type: 3}
+  - {fileID: 7509563822694976775, guid: cb07035155f82c448a182c106b8a51e0, type: 3}
+  - {fileID: 1544713895929405097, guid: 8030c3c89f3bfa94e8c61db384538c3b, type: 3}
+  enemySpawnFrequency: 5

@@ -9,6 +9,7 @@ public class WeaponClass : MonoBehaviour
     public float damage;
     public float fireRate;
     public float spread;
+    public int bulletsPerShot = 1;
 
     public float altFireRate;
     public float altSpread;
@@ -50,8 +51,11 @@ public class WeaponClass : MonoBehaviour
         isPrimaryFiring = firing;
         if (firing && (Time.time >= (lastShotTime + fireRate)))
         {
-            GameObject bulletClone = Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
-            bulletClone.transform.Rotate(0, 0, Random.Range(-spread, spread));
+            for (int i = 0; i < bulletsPerShot; i++)
+            {
+                GameObject bulletClone = Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+                bulletClone.transform.Rotate(0, 0, Random.Range(-spread, spread));
+            }
             lastShotTime = Time.time;
 
             gunAudio.PlayOneShot(gunFire);
