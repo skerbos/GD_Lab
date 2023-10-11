@@ -117,7 +117,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -145,7 +145,6 @@ MonoBehaviour:
   hitCameraShakeIntensity: 0.1
   explosionObject: {fileID: 726058440928107272, guid: deb3a3f104ddd6c4fb76df10bffaa662, type: 3}
   bulletAudio: {fileID: 0}
-  bulletHitClip: {fileID: 0}
   damageNumberText: {fileID: 3206922063618342582, guid: 5f935bb17066cb04589d6617609d13e4, type: 3}
 --- !u!50 &5863187778382634092
 Rigidbody2D:

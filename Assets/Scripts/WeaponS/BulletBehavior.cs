@@ -76,7 +76,7 @@ public class BulletBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.transform.CompareTag("Enemy") || col.transform.CompareTag("Obstacles") || col.transform.CompareTag("Ground"))
+        if (col.transform.CompareTag("Obstacles") || col.transform.CompareTag("Ground") || col.gameObject.layer == 12)
         {
             SpawnAltBulletExplosion();
 

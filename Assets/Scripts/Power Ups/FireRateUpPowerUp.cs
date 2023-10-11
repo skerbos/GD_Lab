@@ -14,9 +14,31 @@ public class FireRateUpPowerUp : BasePowerUp
     private void OnCollisionEnter2D(Collision2D col)
     {
         // Collision with level walls
-        //if (col.)
 
         // Collision with player
+        if (col.gameObject.CompareTag("Player") && spawned)
+        {
+            // Effects & Info after player collects
+
+            DestroyPowerUp();
+        }
+        else if (col.gameObject.layer == 12) // Boundary layer
+        {
+            Vector2 colDir = (col.transform.position - gameObject.transform.position).normalized;
+
+            if (colDir.y > 0 || colDir.y < 0)
+            {
+                //hit top or bottom
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, -rigidBody.velocity.y);
+            }
+
+            if (colDir.x > 0 || colDir.x < 0)
+            {
+                //hit left or right
+                rigidBody.velocity = new Vector2(-rigidBody.velocity.x, rigidBody.velocity.y);
+            }
+
+        }
     }
 
     public override void SpawnPowerUp()
