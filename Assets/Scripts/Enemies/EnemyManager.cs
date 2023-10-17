@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -17,13 +18,10 @@ public class EnemyManager : MonoBehaviour
     private bool shmupGameStarted = false;
     private void Awake()
     {
-        //GameManager.instance.gameStart.AddListener(GameStart);
-        GameManager.instance.shmupGameStart.AddListener(ShmupGameStart);
-        //GameManager.instance.gameRestart.AddListener(GameRestart);
-        GameManager.instance.shmupGameRestart.AddListener(ShmupGameRestart);
-        //GameManager.instance.gameOver.AddListener(GameRestart);
-        GameManager.instance.shmupGameOver.AddListener(ShmupGameRestart);
-        GameManager.instance.nextWave.AddListener(NextWave);
+        //GameManager.instance.shmupGameStart.AddListener(ShmupGameStart);
+        //GameManager.instance.shmupGameRestart.AddListener(ShmupGameRestart);
+        //GameManager.instance.shmupGameOver.AddListener(ShmupGameRestart);
+        //GameManager.instance.nextWave.AddListener(NextWave);
     }
 
     // Start is called before the first frame update
@@ -32,7 +30,7 @@ public class EnemyManager : MonoBehaviour
         currentWaveNumberOfEnemies = startingNumberOfEnemies;
         lastSpawnedTime = Time.time;
 
-        GameManager.instance.shmupGameStart.Invoke();
+        //GameManager.instance.shmupGameStart.Invoke();
     }
 
     // Update is called once per frame

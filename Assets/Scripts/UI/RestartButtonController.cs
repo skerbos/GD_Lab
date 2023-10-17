@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RestartButtonController : MonoBehaviour, IInteractiveButton
 {
+
+    public UnityEvent gameRestart;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +21,6 @@ public class RestartButtonController : MonoBehaviour, IInteractiveButton
 
     public void ButtonClick()
     {
-        GameManager.instance.ShmupGameRestart();
+        gameRestart.Invoke();
     }
 }

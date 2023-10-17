@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
 
-    public GameManager gameManager;
+    public UnityEvent shmupGameOver;
 
     public float horizontalSpeed = 10f;
     public float maxSpeed = 20f;
@@ -45,13 +46,13 @@ public class PlayerMovement : MonoBehaviour
 
     int collisionLayerMask = (1 << 6) | (1 << 7) | (1 << 8);
 
+ 
+
     private void Awake()
     {
-        //GameManager.instance.gameStart.AddListener(GameStart);
-        GameManager.instance.shmupGameStart.AddListener(ShmupGameStart);
-        //GameManager.instance.gameRestart.AddListener(GameRestart);
-        GameManager.instance.shmupGameRestart.AddListener(ShmupGameRestart);
-        //GameManager.instance.gameOver.AddListener(GameOver);
+        //GameManager.instance.shmupGameStart.AddListener(ShmupGameStart);
+        //GameManager.instance.shmupGameRestart.AddListener(ShmupGameRestart);
+        
 
     }
 
@@ -103,6 +104,8 @@ public class PlayerMovement : MonoBehaviour
             marioAnimator.Play("mario-die");
             marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
             alive = false;
+
+            shmupGameOver.Invoke();
         }
     }
 
@@ -304,6 +307,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void ShmupGameOver()
     {
-        
+        shmupGameOver.Invoke();
     }
 }

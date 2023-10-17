@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 
 public class HUDManager : MonoBehaviour
@@ -37,17 +38,16 @@ public class HUDManager : MonoBehaviour
     private bool shmupGameStarted = false;
     private void Awake()
     {
+        /*
         GameManager.instance.gameStart.AddListener(GameStart);
         GameManager.instance.gamePause.AddListener(GamePause);
         GameManager.instance.gameResume.AddListener(GameResume);
-        //GameManager.instance.gameOver.AddListener(GameOver);
         GameManager.instance.shmupGameOver.AddListener(ShmupGameOver);
-        //GameManager.instance.gameRestart.AddListener(GameStart);
         GameManager.instance.shmupGameRestart.AddListener(ShmupGameStart);
         GameManager.instance.shmupGameStart.AddListener(ShmupGameStart);
         GameManager.instance.scoreChange.AddListener(SetScore);
         GameManager.instance.highScoreChange.AddListener(SetHighScore);
-        GameManager.instance.shmupBackToHome.AddListener(ShmupBackToHome);
+        GameManager.instance.shmupBackToHome.AddListener(ShmupBackToHome);*/
         //GameManager.instance.nextWave.AddListener(NextWave);
     }
 

@@ -58,13 +58,14 @@ public class StartButtonController : MonoBehaviour, IInteractiveButton
         }
         titleLogo.SetActive(false);
         transform.GetComponent<Button>().enabled = false;
+
     }
 
     IEnumerator TransitionToFirstLevel()
     {
         yield return new WaitForSecondsRealtime(5f);
 
-        SceneManager.LoadSceneAsync("Shmup_1", LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync("Shmup_1_Week 5", LoadSceneMode.Single);
 
 
     }

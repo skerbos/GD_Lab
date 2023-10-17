@@ -13,7 +13,7 @@ public class Goomba : EnemyClass
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameManager.instance;
+        // gameManager = GameManager.instance;
 
         startPosition = transform.position;
 

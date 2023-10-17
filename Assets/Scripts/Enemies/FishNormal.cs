@@ -7,7 +7,7 @@ public class FishNormal : EnemyClass
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameManager.instance;
+        //gameManager = GameManager.instance;
         hudManager = GameObject.Find("Canvas").GetComponent<HUDManager>();
         hudManager.CreateHealthBar(gameObject);
     }
