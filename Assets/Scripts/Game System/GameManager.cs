@@ -6,33 +6,38 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
-    public UnityEvent gameStart;
-    public UnityEvent gamePause;
-    public UnityEvent gameResume;
-    public UnityEvent gameRestart;
-    public UnityEvent<int> scoreChange;
-    public UnityEvent<int> highScoreChange;
-    public UnityEvent gameOver;
-    public UnityEvent<int> nextWave;
+    public IntVariable gameScore;
+    public IntVariable highScore;
+    //public UnityEvent gameStart;
+    //public UnityEvent gamePause;
+    //public UnityEvent gameResume;
+    //public UnityEvent gameRestart;
+    //public UnityEvent<int> scoreChange;
+    //public UnityEvent<int> highScoreChange;
+    //public UnityEvent gameOver;
+    //public UnityEvent<int> nextWave;
 
     public UnityEvent shmupGameStart;
-    public UnityEvent shmupGameRestart;
-    public UnityEvent shmupGameOver;
-    public UnityEvent shmupBackToHome;
+    //public UnityEvent shmupGameRestart;
+    //public UnityEvent shmupGameOver;
+    //public UnityEvent shmupBackToHome;
 
-    public GameObject enemyManager;
+    //ublic GameObject enemyManager;
 
-    private int score = 0;
-    private int highScore = 0;
+    //private int score = 0;
+    //private int highScore = 0;
     private int currentWave = 1;
     private int enemiesRemaining;
+
+    public UnityEvent updateScore;
+    public UnityEvent updateHighScore;
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1.0f;
-        enemyManager = GameObject.FindWithTag("Enemy Manager");
+        gameScore.Value = 0;
+        //enemyManager = GameObject.FindWithTag("Enemy Manager");
     }
 
     // Update is called once per frame
@@ -45,7 +50,8 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        gameStart.Invoke();
+        //gameStart.Invoke();
+        shmupGameStart.Invoke();
         Time.timeScale = 1.0f;
 
         SceneManager.activeSceneChanged += SceneSetup;
@@ -53,31 +59,34 @@ public class GameManager : MonoBehaviour
 
     public void GamePause()
     {
-        gamePause.Invoke();
+        //gamePause.Invoke();
         Time.timeScale = 0.0f;
     }
 
     public void GameResume()
     {
-        gameResume.Invoke();
+        //gameResume.Invoke();
         Time.timeScale = 1.0f;
     }
 
     public void SceneSetup(Scene current, Scene next)
     {
         shmupGameStart.Invoke();
-        SetScore(0);
-        SetHighScore(highScore);
+        //SetScore(0);
+        //SetHighScore(highScore.Value);
+        gameScore.Value = 0;
+        updateScore.Invoke();
+        updateHighScore.Invoke();
+
     }
 
     public void GameRestart()
     {
-        score = 0;
-        SetScore(score);
+        gameScore.Value = 0;
+        //SetScore(score);
+        updateScore.Invoke();
 
-        currentWave = 1;
-
-        gameRestart.Invoke();
+        //gameRestart.Invoke();
 
         foreach(GameObject enemyBullet in GameObject.FindGameObjectsWithTag("EnemyBullet"))
         {
@@ -89,33 +98,38 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseScore(int increment)
     {
-        score += increment;
-        SetScore(score);
+        //score += increment;
+        //SetScore(score);
+        gameScore.ApplyChange(increment);
+        updateScore.Invoke();
     }
 
     public void SetScore(int score)
     {
-        scoreChange.Invoke(score);
+        //scoreChange.Invoke(score);
+        
     }
 
     public void UpdateHighScore()
     {
-        if (score > highScore)
+        if (gameScore.Value > highScore.Value)
         {
-            highScore = score;
-            SetHighScore(highScore);
+            highScore.Value = gameScore.Value;
+            //SetHighScore(highScore);
+            updateScore.Invoke();
         }
     }
 
     public void SetHighScore(int highScore)
     {
-        highScoreChange.Invoke(highScore);
+        //highScoreChange.Invoke(highScore);
     }
+
 
     public void GameOver()
     {
         Time.timeScale = 0.0f;
-        gameOver.Invoke();
+        //gameOver.Invoke();
     }
 
     public void NextWave()
@@ -123,7 +137,7 @@ public class GameManager : MonoBehaviour
         if (enemiesRemaining == 0)
         {
             currentWave++;
-            nextWave.Invoke(currentWave);
+            //nextWave.Invoke(currentWave);
         }
     }
 
@@ -134,53 +148,60 @@ public class GameManager : MonoBehaviour
 
         SceneManager.activeSceneChanged += SceneSetup;
 
-        SetScore(score);
-        SetHighScore(score);
+        //SetScore(score);
+        //SetHighScore(score);
+        updateScore.Invoke();
     }
 
     public void ShmupGameRestart()
     {
         Time.timeScale = 1.0f;
-        shmupGameRestart.Invoke();
+        //shmupGameRestart.Invoke();
 
 
-        if (highScore < score)
+        if (highScore.Value < gameScore.Value)
         {
-            highScore = score;
-            SetHighScore(highScore);
+            highScore.Value = gameScore.Value;
+            //SetHighScore(highScore);
+            updateHighScore.Invoke();
         }
 
-        score = 0;
-        SetScore(score);
+        gameScore.Value = 0;
+        //SetScore(score);
+        updateScore.Invoke();
     }
 
     public void ShmupGameOver()
     {
         Time.timeScale = 0.0f;
-        shmupGameOver.Invoke();
+        //shmupGameOver.Invoke();
 
 
-        if (highScore < score)
+        if (highScore.Value < gameScore.Value)
         {
-            highScore = score;
-            SetHighScore(highScore);
+            highScore.Value = gameScore.Value;
+            //SetHighScore(highScore);
+            updateHighScore.Invoke();
         }
     }
 
     public void ShmupBackToHome()
     {
         Time.timeScale = 1.0f;
-        shmupBackToHome.Invoke();
+        //shmupBackToHome.Invoke();
 
         SceneManager.activeSceneChanged += SceneSetup;
 
-        SetScore(0);
-        SetHighScore(highScore);
+        //SetScore(0);
+        gameScore.Value = 0;
+        updateScore.Invoke();
+
+        updateHighScore.Invoke();
     }
 
 
     void UpdateEnemiesRemaining()
     {
-        enemiesRemaining = enemyManager.transform.childCount;
+        //enemiesRemaining = enemyManager.transform.childCount;
     }
 }

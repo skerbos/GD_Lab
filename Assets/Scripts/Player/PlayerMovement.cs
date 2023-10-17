@@ -8,8 +8,25 @@ using UnityEngine.Events;
 public class PlayerMovement : MonoBehaviour
 {
 
+    public GameConstants gameConstants;
+    float horizontalSpeed;
+    float maxSpeed;
+    float smoothVal;
+    float gravityScale;
+    float fallingGravityScale;
+    float jumpSpeed;
+    float holdJumpSpeed;
+    float jumpButtonTime;
+    float jumpTime;
+
+    bool alive;
+    float deathImpulse;
+
+    bool isFlying;
+
     public UnityEvent shmupGameOver;
 
+    /*
     public float horizontalSpeed = 10f;
     public float maxSpeed = 20f;
     public float smoothVal = 0.2f;
@@ -18,15 +35,16 @@ public class PlayerMovement : MonoBehaviour
     public float jumpSpeed = 10f;
     public float holdJumpSpeed = 7f;
     public float jumpButtonTime = 0.3f;
-    public float jumpTime;
+    public float jumpTime;*/
 
     private int moveDir;
     private int moveDirVertical;
     private bool jumpedState = false;
 
+    /*
     [System.NonSerialized]
     public bool alive = true;
-    public float deathImpulse = 5f;
+    public float deathImpulse = 5f;*/
 
     public Transform gameCamera;
 
@@ -35,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource marioAudio;
     public AudioSource marioDeathAudio;
 
-    public bool isFlying = false;
+    //public bool isFlying = false;
     private bool onGroundState = false;
     private Vector2 currentVelocity;
     private Rigidbody2D marioRb;
@@ -52,7 +70,21 @@ public class PlayerMovement : MonoBehaviour
     {
         //GameManager.instance.shmupGameStart.AddListener(ShmupGameStart);
         //GameManager.instance.shmupGameRestart.AddListener(ShmupGameRestart);
-        
+        horizontalSpeed = gameConstants.horizontalSpeed;
+        maxSpeed = gameConstants.maxSpeed;
+        smoothVal = gameConstants.smoothVal;
+        gravityScale = gameConstants.gravityScale;
+        fallingGravityScale = gameConstants.fallingGravityScale;
+        jumpSpeed = gameConstants.jumpSpeed;
+        holdJumpSpeed = gameConstants.holdJumpSpeed;
+        jumpButtonTime = gameConstants.jumpButtonTime;
+        jumpTime = gameConstants.jumpTime;
+
+        alive = gameConstants.alive;
+        deathImpulse = gameConstants.deathImpulse;
+
+        isFlying = gameConstants.isFlying;
+
 
     }
 
