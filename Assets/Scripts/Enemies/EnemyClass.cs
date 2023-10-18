@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyClass : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class EnemyClass : MonoBehaviour
     public Rigidbody2D rb;
 
     public bool hasEnteredPlayArea = false;
+
+    public IntVariable score;
+    public UnityEvent updateScore;
+    public UnityEvent updateHighScore;
 
     // Start is called before the first frame update
     void Start()
@@ -71,7 +76,9 @@ public class EnemyClass : MonoBehaviour
 
     public virtual void Death()
     {
-        gameManager.IncreaseScore(10);
+        score.Value += 10;
+        updateScore.Invoke();
+        updateHighScore.Invoke();
 
         GameObject deathParticleClone = Instantiate(deathParticles, transform.position, transform.rotation);
         Destroy(deathParticleClone, 0.5f);

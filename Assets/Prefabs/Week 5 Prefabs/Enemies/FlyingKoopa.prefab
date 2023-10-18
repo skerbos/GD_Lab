@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8583264637237990200}
   - component: {fileID: 5583379863784420901}
   - component: {fileID: 5643776486319111799}
+  - component: {fileID: 710407501986149653}
   m_Layer: 8
   m_Name: FlyingKoopa
   m_TagString: Enemy
@@ -277,3 +278,60 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &710407501986149653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8998002434715763459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ea80336436c8b4090aae8052203cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  hudManager: {fileID: 0}
+  maxHealth: 12
+  moveSpeed: 5
+  currentHealth: 12
+  currentHealthNormalized: 1
+  isLockedOn: 0
+  isDead: 0
+  deathParticles: {fileID: 4349981294169454128, guid: ee589c000b53a1e40b143f52fa304f41, type: 3}
+  startPosition: {x: 0, y: 0, z: 0}
+  rb: {fileID: 4198578546992728936}
+  hasEnteredPlayArea: 0
+  score: {fileID: 11400000, guid: 72c70896e4f92104e8d0b2a7c974de68, type: 2}
+  updateScore:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: b1c2bc481fae76b449e13288d6af4aa5, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[System.Int32, mscorlib
+        m_MethodName: Raise
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  updateHighScore:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 9a0ec7ab886d8784a9e1c3e79c5e1b2b, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[System.Int32, mscorlib
+        m_MethodName: Raise
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  koopaBullet: {fileID: 3433029885995033541, guid: 039356c4cd0edaa4bb1d24b69dfe55e4, type: 3}
+  fireRate: 1

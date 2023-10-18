@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalSpeed: 10
   maxSpeed: 10
-  smoothVal: 0.2
+  smoothVal: 0.05
   gravityScale: 2
   fallingGravityScale: 3
   jumpSpeed: 7

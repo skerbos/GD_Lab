@@ -22,7 +22,7 @@ public class ExplosionBehavior : MonoBehaviour
 
     public void PlayExplosionAudio()
     { 
-        explosionAudio.PlayOneShot(explosionClip);
+        //explosionAudio.PlayOneShot(explosionClip);
     }
 
     public void DestroyExplosion()

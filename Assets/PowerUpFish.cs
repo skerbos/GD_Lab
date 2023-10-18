@@ -37,14 +37,17 @@ public class PowerUpFish : EnemyClass
 
     public override void Death()
     {
-        gameManager.IncreaseScore(100);
+
+        score.Value += 100;
+        updateScore.Invoke();
+        updateHighScore.Invoke();
 
         GameObject deathParticleClone = Instantiate(deathParticles, transform.position, transform.rotation);
         Destroy(deathParticleClone, 0.5f);
 
         Instantiate(powerUps[Random.Range(0, powerUps.Count)], transform.position, transform.rotation);
 
-        Camera.main.GetComponent<CameraBehavior>().ShakeCamera(0.2f, 1f);
+        Camera.main.GetComponent<CameraBehavior>().ShakeCamera(0.1f, 0.5f);
 
         isDead = true;
     }

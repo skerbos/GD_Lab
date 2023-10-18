@@ -105,6 +105,8 @@ public class PlayerMovement : MonoBehaviour
         {
             marioRb.gravityScale = 0.0f;
         }
+
+        ShmupGameStart();
     }
 
     // Update is called once per frame
@@ -311,13 +313,23 @@ public class PlayerMovement : MonoBehaviour
         alive = true;
 
         // reset camera position
-        gameCamera.position = new Vector3(0, 4, -10);
+        //gameCamera.position = new Vector3(0, 4, -10);
 
     }
 
     public void ShmupGameStart()
     {
-        
+
+        // reset sprite direction
+        faceRightState = true;
+        marioSprite.flipX = false;
+
+        //  reset animation
+        marioAnimator.SetTrigger("gameRestart");
+        alive = true;
+
+        gameObject.transform.GetChild(0).GetChild(0).GetComponent<WeaponClass>().bulletsPerShot = 1;
+        gameObject.transform.GetChild(0).GetChild(0).GetComponent<WeaponClass>().fireRate = 0.1f;
     }
 
     public void ShmupGameRestart()
@@ -339,6 +351,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void ShmupGameOver()
     {
-        shmupGameOver.Invoke();
+        //shmupGameOver.Invoke();
     }
 }

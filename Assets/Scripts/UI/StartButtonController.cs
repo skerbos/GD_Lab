@@ -65,7 +65,7 @@ public class StartButtonController : MonoBehaviour, IInteractiveButton
     {
         yield return new WaitForSecondsRealtime(5f);
 
-        SceneManager.LoadSceneAsync("Shmup_1_Week 5", LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync("Shmup_1_Week5", LoadSceneMode.Single);
 
 
     }

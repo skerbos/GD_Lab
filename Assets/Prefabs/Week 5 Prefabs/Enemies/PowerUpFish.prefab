@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2301247124661820881}
   - component: {fileID: 5934644057302505692}
   - component: {fileID: 232224950956799138}
+  - component: {fileID: -257902053027113383}
   m_Layer: 8
   m_Name: PowerUpFish
   m_TagString: Enemy
@@ -277,3 +278,61 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-257902053027113383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8895395297968789411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c229bc37fcd7ba040a786e5ba27d93b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  hudManager: {fileID: 0}
+  maxHealth: 50
+  moveSpeed: 2
+  currentHealth: 50
+  currentHealthNormalized: 1
+  isLockedOn: 0
+  isDead: 0
+  deathParticles: {fileID: 4349981294169454128, guid: ee589c000b53a1e40b143f52fa304f41, type: 3}
+  startPosition: {x: 0, y: 0, z: 0}
+  rb: {fileID: 1802225771466489765}
+  hasEnteredPlayArea: 0
+  score: {fileID: 11400000, guid: 72c70896e4f92104e8d0b2a7c974de68, type: 2}
+  updateScore:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: b1c2bc481fae76b449e13288d6af4aa5, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[System.Int32, mscorlib
+        m_MethodName: Raise
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  updateHighScore:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 9a0ec7ab886d8784a9e1c3e79c5e1b2b, type: 2}
+        m_TargetAssemblyTypeName: GameEvent`1[[System.Int32, mscorlib
+        m_MethodName: Raise
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  powerUps:
+  - {fileID: 2630690826171257710, guid: 925e7f5d06431624aafb09640d7183c5, type: 3}
+  - {fileID: 7910693534191272440, guid: 0178ff183c36deb4abf1460ab06685fd, type: 3}

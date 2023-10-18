@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerGameOver : MonoBehaviour
 {
-    private GameManager gameManager;
+    public UnityEvent shmupGameOver;
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();   
+
     }
 
     // Update is called once per frame
@@ -19,6 +20,6 @@ public class PlayerGameOver : MonoBehaviour
 
     public void GameOverCallback()
     {
-        gameManager.ShmupGameOver();
+        shmupGameOver.Invoke();
     }
 }

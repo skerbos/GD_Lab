@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1346048907626875121}
   - component: {fileID: 333080239912936581}
   - component: {fileID: 7927820319596375089}
+  - component: {fileID: 2415783362188423346}
   m_Layer: 10
   m_Name: Koopa Bullet
   m_TagString: EnemyBullet
@@ -203,6 +204,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2415783362188423346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3433029885995033541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a3d917424af7640935250ff697dc31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 10
+  bulletLifeTime: 5
+  bulletDamage: 10
+  isHoming: 0
+  angleChangeSpeed: 20
+  lockOnTarget: {fileID: 0}
+  hitCameraShakeDuration: 0.1
+  hitCameraShakeIntensity: 0.1
+  explosionObject: {fileID: 7009024218399638912, guid: 213bbcfefa023ff4f9620bfe21eb730c, type: 3}
+  bulletAudio: {fileID: 7927820319596375089}
 --- !u!1 &4007152433148980097
 GameObject:
   m_ObjectHideFlags: 0

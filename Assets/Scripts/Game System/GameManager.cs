@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         gameScore.Value = 0;
+        shmupGameStart.Invoke();
         //enemyManager = GameObject.FindWithTag("Enemy Manager");
     }
 
@@ -116,7 +117,7 @@ public class GameManager : MonoBehaviour
         {
             highScore.Value = gameScore.Value;
             //SetHighScore(highScore);
-            updateScore.Invoke();
+            updateHighScore.Invoke();
         }
     }
 

@@ -8,6 +8,9 @@ using TMPro;
 public class HUDManager : MonoBehaviour
 {
 
+    public IntVariable score;
+    public IntVariable highScore;
+
     private Vector3[] scoreTextPosition = {
         new Vector3(-747, 480, 0),
         new Vector3(0,0,0)
@@ -60,7 +63,8 @@ public class HUDManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        SetScore();
+        SetHighScore();
     }
 
     public void GameStart()
@@ -118,14 +122,14 @@ public class HUDManager : MonoBehaviour
         pauseText.SetActive(false);
     }
 
-    public void SetScore(int score)
+    public void SetScore()
     {
-        scoreText.GetComponent<TextMeshProUGUI>().text = "SCORE: " + score.ToString();
+        scoreText.GetComponent<TextMeshProUGUI>().text = "SCORE: " + score.Value.ToString();
     }
 
-    public void SetHighScore(int highScore)
+    public void SetHighScore()
     {
-        highScoreText.GetComponent<TextMeshProUGUI>().text = "HIGHSCORE: " + highScore.ToString();
+        highScoreText.GetComponent<TextMeshProUGUI>().text = "HIGHSCORE: " + highScore.Value.ToString();
     }
 
     public void GameOver()

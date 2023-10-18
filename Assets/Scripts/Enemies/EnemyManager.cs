@@ -31,6 +31,7 @@ public class EnemyManager : MonoBehaviour
         lastSpawnedTime = Time.time;
 
         //GameManager.instance.shmupGameStart.Invoke();
+        ShmupGameStart();
     }
 
     // Update is called once per frame
