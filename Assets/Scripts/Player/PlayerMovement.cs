@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator marioAnimator;
 
     private AudioSource marioAudio;
-    public AudioSource marioDeathAudio;
+    public AudioClip marioDeathAudioClip;
 
     //public bool isFlying = false;
     private bool onGroundState = false;
@@ -134,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
 
             //Death Animation
             marioAnimator.Play("mario-die");
-            marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
+            marioAudio.PlayOneShot(marioDeathAudioClip);
             alive = false;
 
             shmupGameOver.Invoke();

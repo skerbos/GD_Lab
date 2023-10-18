@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: -330706589832572083}
   - component: {fileID: -5330303034646110590}
   - component: {fileID: 5679572591156154990}
-  - component: {fileID: -6979457541547687063}
   - component: {fileID: -3887015239413700788}
   m_Layer: 9
   m_Name: Mario
@@ -639,34 +638,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-6979457541547687063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5494041204883360464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f1ed28deb6cd594d9d4b9ecea5ecc70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 1455899f12deac848846db6307380ba5, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &-3887015239413700788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,6 +650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e596a92a7105d40b966decaf0af1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameConstants: {fileID: 11400000, guid: aae13df0bd87d7841ade2859acd50048, type: 2}
   shmupGameOver:
     m_PersistentCalls:
       m_Calls:
@@ -694,19 +666,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  horizontalSpeed: 10
-  maxSpeed: 10
-  smoothVal: 0.2
-  gravityScale: 1
-  fallingGravityScale: 3
-  jumpSpeed: 10
-  holdJumpSpeed: 7
-  jumpButtonTime: 0.3
-  jumpTime: 0
-  deathImpulse: 5
   gameCamera: {fileID: 0}
-  marioDeathAudio: {fileID: 0}
-  isFlying: 0
+  marioDeathAudioClip: {fileID: 8300000, guid: 33edb429ed439b9459fa25b579548997, type: 3}
 --- !u!1 &5938260006484632356
 GameObject:
   m_ObjectHideFlags: 0
